@@ -1,0 +1,21 @@
+export const GET_PRODUCTS = 'GET_PRODUCTS';
+export const ADD_PRODUCT = 'ADD_PRODUCT';
+export const DELETE_PRODUCT = 'DELETE_PRODUCT';
+export const PRODUCTS_LOADING = 'PRODUCTS_LOADING';
+
+export const GET_USERORDERS = 'GET_USERORDERS';
+export const ADD_USERORDER = 'ADD_USERORDER';
+export const GET_USERORDER = 'GET_USERORDER';
+export const DELETE_USERORDER = 'DELETE_USERORDER';
+export const USERORDERS_LOADING = 'USERORDERS_LOADING';
+export const SET_USERORDER_ID = 'SET_USERORDER_ID';
+export const GET_USERORDER_ID = 'GET_USERORDER_ID';
+
+export const GET_ORDERS = 'GET_ORDERS';
+export const ADD_ORDER = 'ADD_ORDER';
+export const DELETE_ORDER = 'DELETE_ORDER';
+export const ORDERS_LOADING = 'ORDERS_LOADING';
+
+export const SIGNUP = 'SIGNUP';
+export const SIGNIN = 'SIGNIN';
+export const GET_TOKEN = 'GET_TOKEN';
