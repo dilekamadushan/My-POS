@@ -1,14 +1,22 @@
 import axios from 'axios';
-import {GET_USERORDERS, ADD_USERORDER, DELETE_USERORDER ,GET_USERORDER, USERORDERS_LOADING, SET_USERORDER_ID, GET_USERORDER_ID} from './types';
+import {
+    ADD_USERORDER,
+    DELETE_USERORDER,
+    GET_USERORDER,
+    GET_USERORDER_ID,
+    GET_USERORDERS,
+    SET_USERORDER_ID,
+    USERORDERS_LOADING
+} from './types';
 
-export const getUserOrders = () =>  dispatch =>{
+export const getUserOrders = () => dispatch => {
     dispatch(setUserOrdersLoading());
     axios.get('/userOrders')
-    .then(res =>
-         dispatch({
-             type:GET_USERORDERS,
-             payload: res.data.userOrders
-        }))
+        .then(res =>
+            dispatch({
+                type: GET_USERORDERS,
+                payload: res.data.userOrders
+            }))
 };
 
 export const deleteUserOrder = (id) => dispatch => {
@@ -18,45 +26,45 @@ export const deleteUserOrder = (id) => dispatch => {
             payload: id
 
         })
+    )
+};
+
+export const addUserOrder = (userOrder) => dispatch => {
+    axios
+        .post('/userOrders', userOrder)
+        .then(res =>
+            dispatch({
+                type: ADD_USERORDER,
+                payload: res.data.createdUserOrder
+            })
         )
 };
 
-export const addUserOrder = (userOrder) =>  dispatch =>{
+export const getUserOrder = (id) => dispatch => {
     axios
-    .post('/userOrders',userOrder)
-    .then(res => 
-        dispatch({
-            type: ADD_USERORDER,
-            payload: res.data.createdUserOrder
-        })
-    )
+        .get(`/userOrders/${id}`)
+        .then(res =>
+            dispatch({
+                type: GET_USERORDER,
+                payload: res.data.userOrder
+            })
+        )
 };
-  
-export const getUserOrder = (id) =>  dispatch =>{
-    axios
-    .get(`/userOrders/${id}`)
-    .then(res => 
-        dispatch({
-            type: GET_USERORDER,
-            payload: res.data.userOrder
-        })
-    )
-};
-  
+
 export const setUserOrdersLoading = () => {
     return {
-        type:USERORDERS_LOADING
+        type: USERORDERS_LOADING
     };
 };
 export const setUserOrderID = (userOrderID) => {
     return {
-        type:SET_USERORDER_ID,
-        payload:userOrderID
+        type: SET_USERORDER_ID,
+        payload: userOrderID
     };
 };
 
 export const getUserOrderID = () => {
     return {
-        type:GET_USERORDER_ID
+        type: GET_USERORDER_ID
     };
 };

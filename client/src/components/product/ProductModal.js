@@ -11,7 +11,7 @@ import {
 } from "reactstrap";
 
 import { connect } from "react-redux";
-import { addProduct } from "../actions/productActions";
+import { addProduct } from "../../actions/productActions";
 
 class ProductModal extends Component {
   state = {

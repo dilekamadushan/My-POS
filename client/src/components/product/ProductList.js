@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Container, ListGroup, ListGroupItem, Button } from "reactstrap";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import {connect} from 'react-redux';
-import {getProducts, deleteProduct} from '../actions/productActions';
+import {getProducts, deleteProduct} from '../../actions/productActions';
 import PropTypes from 'prop-types';
 
 class ProductList extends Component {

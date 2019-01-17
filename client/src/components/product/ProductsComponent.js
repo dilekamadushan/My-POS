@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import AppNavbar from "../AppNavbar";
-import UserOrderList from "./UserOrderList";
-import UserOrderModal from "./userOrderModal";
+import ProductList from "./ProductList";
+import ProductModal from "./ProductModal";
 import { Container } from "reactstrap";
 
-export default class UserOrders extends Component {
+export default class Products extends Component {
 
  
     render() {
@@ -14,8 +14,8 @@ export default class UserOrders extends Component {
           <Container>
 
          
-         <UserOrderModal/>
-         <UserOrderList/>
+         <ProductModal/>
+          <ProductList/>
           </Container>
         </div>
       );

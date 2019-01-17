@@ -37,12 +37,28 @@ class Header extends Component {
                         </Link>
 
                     </li>
+                    <li className="nav-item">
+                        <Link to={"/signout"} className="nav-link">
+                            Sign Out
+                        </Link>
+
+                    </li>
                 </ul>
             ];
         }
         return [
-            <ul>
-            </ul>
+                <ul className="navbar-nav mr-auto">
+                    <li className="nav-item">
+                        <Link to={"/signup"} className="nav-link">
+                            Sign Up
+                        </Link>
+                    </li>
+                    <li className="nav-item">
+                        <Link to={"/signin"} className="nav-link">
+                            Sign In
+                        </Link>
+                    </li>
+                </ul>
         ];
     }
 

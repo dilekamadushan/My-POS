@@ -9,9 +9,9 @@ router.get("/", UserOrdersController.userOrders_get_all);
 
 router.post("/", UserOrdersController.userOrders_create_userOrder);
 
-router.get("/:userOrderId",  UserOrdersController.userOrders_get_userOrder);
+router.get("/:userOrderId", UserOrdersController.userOrders_get_userOrder);
 
-router.delete("/:userOrderId",  UserOrdersController.userOrders_delete_userOrder);
+router.delete("/:userOrderId", UserOrdersController.userOrders_delete_userOrder);
 
 
 module.exports = router;

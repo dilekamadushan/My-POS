@@ -1,19 +1,17 @@
 import axios from 'axios';
-import {GET_PRODUCTS, ADD_PRODUCT, DELETE_PRODUCT, PRODUCTS_LOADING} from './types';
-import combineReducers from '../reducers/index';
-export const getProducts = () =>  dispatch =>{
-    dispatch(setProductsLoading());
+import {ADD_PRODUCT, DELETE_PRODUCT, GET_PRODUCTS, PRODUCTS_LOADING} from './types';
 
-    console.log('lllll'+combineReducers.user);
+export const getProducts = () => dispatch => {
+    dispatch(setProductsLoading());
     axios.get('/products',
         {
             //headers: { 'Authorization': `${getToken()}` }
         })
-    .then(res =>
-         dispatch({
-             type:GET_PRODUCTS,
-             payload: res.data.products
-        }))
+        .then(res =>
+            dispatch({
+                type: GET_PRODUCTS,
+                payload: res.data.products
+            }))
 };
 
 export const deleteProduct = (id) => dispatch => {
@@ -23,22 +21,22 @@ export const deleteProduct = (id) => dispatch => {
             payload: id
 
         })
+    )
+};
+
+export const addProduct = (product) => dispatch => {
+    axios
+        .post('/products', product)
+        .then(res =>
+            dispatch({
+                type: ADD_PRODUCT,
+                payload: res.data.createdProduct
+            })
         )
 };
 
-export const addProduct = (product) =>  dispatch =>{
-    axios
-    .post('/products',product)
-    .then(res => 
-        dispatch({
-            type: ADD_PRODUCT,
-            payload: res.data.createdProduct
-        })
-    )
-};
-  
 export const setProductsLoading = () => {
     return {
-        type:PRODUCTS_LOADING
+        type: PRODUCTS_LOADING
     };
 };

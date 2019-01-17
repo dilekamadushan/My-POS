@@ -9,7 +9,7 @@ import {
 import {connect} from "react-redux";
 import {signin} from "../actions/userActions";
 
-class Signin extends Component {
+class SignIn extends Component {
     state = {
         email: "",
         password: ""
@@ -76,4 +76,4 @@ const mapStateToProps = state => ({
 export default connect(
     mapStateToProps,
     {signin}
-)(Signin);
+)(SignIn);

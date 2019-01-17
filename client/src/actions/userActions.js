@@ -1,8 +1,8 @@
 import axios from 'axios';
-import {SIGNUP, SIGNIN, GET_TOKEN} from './types';
+import {GET_TOKEN, SIGNIN, SIGNUP} from './types';
 
 export const signup = (user) => dispatch => {
-    axios.post(`/user/signup`,user)
+    axios.post(`/user/signup`, user)
         .then(res =>
             dispatch({
                 type: SIGNUP,
@@ -20,6 +20,6 @@ export const signin = (user) => dispatch => {
 };
 export const getToken = () => {
     return {
-        type:GET_TOKEN
+        type: GET_TOKEN
     };
 };

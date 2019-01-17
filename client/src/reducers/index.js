@@ -4,9 +4,9 @@ import userOrderReducer from './userOrderReducer';
 import orderReducer from './orderReducer';
 import userReducer from './userReducer';
 
-export default combineReducers ({
+export default combineReducers({
     product: productReducer,
-    userOrder : userOrderReducer,
+    userOrder: userOrderReducer,
     order: orderReducer,
-    user:userReducer
+    user: userReducer
 });

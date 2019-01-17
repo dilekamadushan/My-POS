@@ -8,13 +8,13 @@ import "./App.css";
 
 
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {BrowserRouter as Router, Switch, Route, Link} from 'react-router-dom';
+import {BrowserRouter as Router, Link, Route, Switch} from 'react-router-dom';
 
-import Products from './components/products.component';
-import UserOrders from './components/userOrder/userOrders.component';
-import Orders from './components/order/orders.component';
-import signUp from './components/signup';
-import signIn from './components/signin'
+import Products from './components/product/ProductsComponent';
+import UserOrders from './components/userOrder/UserOrdersComponent';
+import Orders from './components/order/OrdersComponent';
+import SignUp from './components/SignUp';
+import SignIn from './components/SignIn'
 
 import Header from "./components/Header";
 
@@ -33,31 +33,7 @@ class App extends Component {
                                 className="collapse navbar-collapse"
                                 id="navbarSupportedContent"
                             >
-                                <ul className="navbar-nav mr-auto">
-                                    <li className="nav-item">
-                                        <Link to={"/signup"} className="nav-link">
-                                            Sign Up
-                                        </Link>
-                                    </li>
-                                    <li className="nav-item">
-                                        <Link to={"/signin"} className="nav-link">
-                                            Sign In
-                                        </Link>
-                                    </li>
-                                </ul>
 
-                                {/*  <li className="nav-item">
-                    <Link to={"/products"} className="nav-link">
-                     Products
-                    </Link>
-                  
-                  </li>
-                  <li className="nav-item">
-                    <Link to={"/userOrders"} className="nav-link">
-                     User Orders
-                    </Link>
-                  
-                  </li>*/}
                                 <Header/>
 
                             </div>
@@ -66,8 +42,8 @@ class App extends Component {
                         <br/>
                         <h2>Welcome to Sysco LABS POS</h2> <br/>
                         <Switch>
-                            <Route exact path="/signup" component={signUp}/>
-                            <Route exact path="/signin" component={signIn}/>
+                            <Route exact path="/signup" component={SignUp}/>
+                            <Route exact path="/signin" component={SignIn}/>
                             <Route path='/orders/:userOrderId' component={Orders}/>
                             <Route path="/products" component={Products}/>
                             <Route path="/userOrders" component={UserOrders}/>

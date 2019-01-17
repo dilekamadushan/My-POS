@@ -1,5 +1,4 @@
-import {SIGNUP, SIGNIN, GET_TOKEN} from '../actions/types';
-import axios from "axios";
+import {GET_TOKEN, SIGNIN, SIGNUP} from '../actions/types';
 
 
 export const initialState = {
