@@ -3,7 +3,6 @@ import OrderList from "./OrderList";
 import {Container} from "reactstrap";
 import OrderAppNavbar from "./OrderAppNavbar";
 import ProductListForOrder from "./ProductListForOrder";
-import ProductModalForOrder from "./ProductModalForOrder"
 
 export default class Orders extends Component {
     render() {

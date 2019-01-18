@@ -2,17 +2,27 @@ import React, {Component} from "react";
 import {Button, Form, FormGroup, Input, Label, Modal, ModalBody, ModalHeader} from "reactstrap";
 
 import {connect} from "react-redux";
-import {addProduct} from "../../actions/productActions";
+import {getProductId, setProductModalForOrder} from "../../actions/productActions";
+import {addOrder} from '../../actions/orderActions';
+import {getUserOrderID} from "../../actions/userOrderActions";
 
 class ProductModalForOrder extends Component {
     state = {
-        modal: false,
-        name: "",
-        price: 0
+        quantity: 1
     };
 
+    componentDidMount() {
+        this.props.getProductId();
+    }
+
+
     toggle = () => {
-        this.setState({modal: !this.state.modal});
+        this.props.setProductModalForOrder(false);
+    };
+
+    returnBooleanForModal = () => {
+        const {productModalForOrder} = this.props.product;
+        return productModalForOrder;
     };
 
     onChange = e => {
@@ -22,55 +32,46 @@ class ProductModalForOrder extends Component {
     onSubmit = e => {
         e.preventDefault();
 
-        const newProduct = {
-            name: this.state.name,
-            price: this.state.price
+        const {userOrderId} = this.props.userOrder;
+        console.log('creating order' + userOrderId);
+
+        const {productId} = this.props.product;
+        console.log('creating order' + productId);
+
+        const newOrder = {
+            productId: productId,
+            userOrderId: userOrderId,
+            quantity: this.state.quantity
         };
-        //Add Product via addProduct action
-        this.props.addProduct(newProduct);
+        this.props.addOrder(newOrder);
+
 
         //Close the modal
         this.toggle();
     };
 
     render() {
+
         return (
             <div>
-                <Button
-                    color="dark"
-                    style={{marginBottom: "2rem"}}
-                    onClick={this.toggle}
-                >
-                    Add Product
-                </Button>
 
-                <Modal isOpen={this.state.modal} toggle={this.toggle}>
+                <Modal isOpen={this.returnBooleanForModal()} toggle={this.toggle}>
                     <ModalHeader toggle={this.toggle}>Add To Products</ModalHeader>
                     <ModalBody>
                         <Form onSubmit={this.onSubmit}>
                             <FormGroup>
-                                <Label for="product">Product</Label>
-
-                                <Input
-                                    type="text"
-                                    name="name"
-                                    id="product"
-                                    placeholder="Add shopping Product"
-                                    onChange={this.onChange}
-                                />
-
-                                <Label for="price">Price</Label>
+                                <Label for="quantity">Quantity</Label>
 
                                 <Input
                                     type="number"
-                                    name="price"
-                                    id="price"
-                                    placeholder="Add Price"
+                                    name="quantity"
+                                    id="quantity"
+                                    placeholder="Add Quantity"
                                     onChange={this.onChange}
                                 />
 
                                 <Button color="dark" style={{marginTop: "2rem"}} block>
-                                    Add Product
+                                    Add Quantity
                                 </Button>
                             </FormGroup>
                         </Form>
@@ -82,9 +83,10 @@ class ProductModalForOrder extends Component {
 }
 
 const mapStateToProps = state => ({
-    product: state.product
+    product: state.product,
+    userOrder: state.userOrder
 });
 export default connect(
     mapStateToProps,
-    {addProduct}
+    {setProductModalForOrder, addOrder, getUserOrderID, getProductId}
 )(ProductModalForOrder);

@@ -15,7 +15,7 @@ class SignIn extends Component {
         const {loggedIn} = this.props.user;
         console.log('Inside Sign in did' + loggedIn);
         if (loggedIn) {
-            this.props.history.push('/products');
+            this.props.history.push('/userOrders');
         }
 
 
@@ -48,14 +48,14 @@ class SignIn extends Component {
         const {loggedIn} = this.props.user;
         console.log('Inside Sign in ' + loggedIn);
         if (loggedIn) {
-            this.props.history.push('/products');
+            this.props.history.push('/userOrders');
         }
     };
 
     render() {
         const {loggedIn} = this.props.user;
         if (loggedIn) {
-            this.props.history.push('/products')
+            this.props.history.push('/userOrders')
         }
         return (
 

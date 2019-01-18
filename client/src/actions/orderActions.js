@@ -1,7 +1,8 @@
 import axios from 'axios';
-import {ADD_ORDER, DELETE_ORDER, GET_ORDERS, ORDERS_LOADING} from './types';
+import {DELETE_ORDER, GET_ORDERS, ORDERS_LOADING} from './types';
 
 export const getOrders = (userOrderID) => dispatch => {
+    console.log('inside get orders' + userOrderID);
     dispatch(setOrdersLoading());
     // axios.get(`/orders`)
     axios.get(`/orders/userOrders/${userOrderID}`)
@@ -25,11 +26,15 @@ export const deleteOrder = (id) => dispatch => {
 export const addOrder = (order) => dispatch => {
     axios
         .post('/orders', order)
-        .then(res =>
-            dispatch({
-                type: ADD_ORDER,
-                payload: res.data.createdOrder
-            })
+        .then(res => {
+                console.log('before sending the request' + res.data.createdOrder.userOrderId);
+                axios.get(`/orders/userOrders/${res.data.createdOrder.userOrderId}`)
+                    .then(res =>
+                        dispatch({
+                            type: GET_ORDERS,
+                            payload: res.data.orders
+                        }))
+            }
         )
 };
 
@@ -38,3 +43,15 @@ export const setOrdersLoading = () => {
         type: ORDERS_LOADING
     };
 };
+
+/*
+export const addOrder = (order) => dispatch => {
+    axios
+        .post('/orders', order)
+        .then(res =>
+            dispatch({
+                type: ADD_ORDER,
+                payload: res.data.createdOrder
+            })
+        )
+};*/

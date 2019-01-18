@@ -1,5 +1,13 @@
 import axios from 'axios';
-import {ADD_PRODUCT, DELETE_PRODUCT, GET_PRODUCTS, PRODUCTS_LOADING} from './types';
+import {
+    ADD_PRODUCT,
+    DELETE_PRODUCT,
+    GET_PRODUCT_ID,
+    GET_PRODUCTS,
+    PRODUCTS_LOADING,
+    SET_PRODUCT_ID,
+    SET_PRODUCT_MODAL_FOR_ORDER
+} from './types';
 
 export const getProducts = () => dispatch => {
     dispatch(setProductsLoading());
@@ -38,5 +46,25 @@ export const addProduct = (product) => dispatch => {
 export const setProductsLoading = () => {
     return {
         type: PRODUCTS_LOADING
+    };
+};
+
+export const setProductId = (productID) => {
+    return {
+        type: SET_PRODUCT_ID,
+        payload: productID
+    };
+};
+
+export const setProductModalForOrder = (logic) => {
+    return {
+        type: SET_PRODUCT_MODAL_FOR_ORDER,
+        payload: logic
+    };
+};
+
+export const getProductId = () => {
+    return {
+        type: GET_PRODUCT_ID
     };
 };

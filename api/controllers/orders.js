@@ -55,6 +55,7 @@ exports.orders_create_order = (req, res, next) => {
                                     message: "Order stored",
                                     createdOrder: {
                                         _id: updatedOrder._id,
+                                        userOrderId: updatedOrder.userOrderId,
                                         product: updatedOrder.product,
                                         quantity: updatedOrder.quantity
                                     },
@@ -86,6 +87,7 @@ exports.orders_create_order = (req, res, next) => {
                                     createdOrder: {
                                         _id: newOrder._id,
                                         product: newOrder.product,
+                                        userOrderId: newOrder.userOrderId,
                                         quantity: newOrder.quantity
                                     },
                                     request: {
