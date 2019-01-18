@@ -1,4 +1,4 @@
-import {AUTH_ERROR, GET_TOKEN, SIGNIN, SIGNUP} from '../actions/types';
+import {AUTH_ERROR, GET_AUTH_ERROR, GET_TOKEN, SET_AUTH_ERROR, SIGNIN, SIGNUP} from '../actions/types';
 
 
 export const initialState = {
@@ -15,28 +15,27 @@ export default function (state = initialState, action) {
                 ...state
             };
         case SIGNIN:
-            if (action.payload == "Auth failed") {
-                return {
-                    ...state,
-                    authError: true
-                };
-            } else {
-                return {
-                    ...state,
-                    token: action.payload,
-                    loggedIn: true
-                };
 
-            }
+            return {
+                ...state,
+                token: action.payload,
+                loggedIn: true
+
+
+            };
 
         case GET_TOKEN:
             return {
                 ...state
             };
-        case AUTH_ERROR:
+        case SET_AUTH_ERROR:
             return {
                 ...state,
                 auth_error: true,
+            };
+        case GET_AUTH_ERROR:
+            return {
+                ...state
             };
         default:
             return state;

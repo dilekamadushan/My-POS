@@ -1,10 +1,10 @@
-import React, { Component } from "react";
-import { Container, ListGroup, ListGroupItem, Button } from "reactstrap";
-import { CSSTransition, TransitionGroup } from "react-transition-group";
-import { connect } from "react-redux";
-import { getUserOrders, deleteUserOrder, setUserOrderID} from "../../actions/userOrderActions";
+import React, {Component} from "react";
+import {Button, Container, ListGroup, ListGroupItem} from "reactstrap";
+import {CSSTransition, TransitionGroup} from "react-transition-group";
+import {connect} from "react-redux";
+import {deleteUserOrder, getUserOrders, setUserOrderID} from "../../actions/userOrderActions";
 import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
+import {Link} from "react-router-dom";
 
 class UserOrderList extends Component {
 
@@ -18,6 +18,10 @@ class UserOrderList extends Component {
 
   onClickSetUserOrderID = id => {
     this.props.setUserOrderID(id);
+  };
+
+  onClickSetUserOrderName = name => {
+    this.props.setUserOrderID(name);
   };
 
   render() {

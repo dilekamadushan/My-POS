@@ -42,18 +42,19 @@ class ProductListForOrder extends Component {
 
     render() {
         const {products} = this.props.product;
+        console.log(products[0]);
         return (
             <Container>
                 <ListGroup>
                     <TransitionGroup>
-                        {products.map(({_id, name}) => (
+                        {products.map(({_id, name, imageURL}) => (
                             <CSSTransition key={_id} timeout={500} classNames="fade">
                                 {
 
                                     <div>
                                         <Card>
                                             <CardImg top width="100%"
-                                                     src="https://images.pexels.com/photos/70497/pexels-photo-70497.jpeg?cs=srgb&dl=burger-chips-dinner-70497.jpg&fm=jpg"
+                                                     src={imageURL}
                                                      alt="Card image cap"/>
                                             <CardBody>
                                                 <CardTitle>{name}</CardTitle>

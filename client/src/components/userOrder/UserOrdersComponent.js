@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
-import AppNavbar from "../AppNavbar";
+import React, {Component} from 'react';
+import UserOrderTitle from "./UserOrderTitle";
 import UserOrderList from "./UserOrderList";
 import UserOrderModal from "./UserOrderModal";
-import { Container } from "reactstrap";
+import {Container} from "reactstrap";
 
 export default class UserOrders extends Component {
 
@@ -10,7 +10,7 @@ export default class UserOrders extends Component {
     render() {
       return (
         <div className="App">
-          <AppNavbar />
+            <UserOrderTitle/>
           <Container>
 
          

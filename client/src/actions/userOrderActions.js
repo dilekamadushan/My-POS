@@ -4,8 +4,10 @@ import {
     DELETE_USERORDER,
     GET_USERORDER,
     GET_USERORDER_ID,
+    GET_USERORDER_NAME,
     GET_USERORDERS,
     SET_USERORDER_ID,
+    SET_USERORDER_NAME,
     USERORDERS_LOADING
 } from './types';
 
@@ -66,5 +68,18 @@ export const setUserOrderID = (userOrderID) => {
 export const getUserOrderID = () => {
     return {
         type: GET_USERORDER_ID
+    };
+};
+
+export const setUserOrderName = (userOrderName) => {
+    return {
+        type: SET_USERORDER_NAME,
+        payload: userOrderName
+    };
+};
+
+export const getUserOrderName = () => {
+    return {
+        type: GET_USERORDER_NAME
     };
 };

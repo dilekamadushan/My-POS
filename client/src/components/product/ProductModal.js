@@ -1,23 +1,15 @@
-import React, { Component } from "react";
-import {
-  Button,
-  Modal,
-  ModalHeader,
-  ModalBody,
-  Form,
-  FormGroup,
-  Label,
-  Input
-} from "reactstrap";
+import React, {Component} from "react";
+import {Button, Form, FormGroup, Input, Label, Modal, ModalBody, ModalHeader} from "reactstrap";
 
-import { connect } from "react-redux";
-import { addProduct } from "../../actions/productActions";
+import {connect} from "react-redux";
+import {addProduct} from "../../actions/productActions";
 
 class ProductModal extends Component {
   state = {
     modal: false,
     name: "",
-    price:0
+    price: 0,
+    imageURL: ''
   };
 
   toggle = () => {
@@ -33,7 +25,8 @@ class ProductModal extends Component {
 
     const newProduct = {
       name: this.state.name,
-      price:this.state.price
+      price: this.state.price,
+      imageURL: this.state.imageURL
     };
     //Add Product via addProduct action
     this.props.addProduct(newProduct);
@@ -76,6 +69,16 @@ class ProductModal extends Component {
                   id="price"
                   placeholder="Add Price"
                   onChange={this.onChange}
+                />
+
+                <Label for="image">Image</Label>
+
+                <Input
+                    type="text"
+                    name="imageURL"
+                    id="imageURL"
+                    placeholder="Add image URL"
+                    onChange={this.onChange}
                 />
 
                 <Button color="dark" style={{ marginTop: "2rem" }} block>

@@ -5,7 +5,7 @@ import "../App.css";
 
 
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {  Link } from 'react-router-dom';
+import {Link} from 'react-router-dom';
 
 
 import {getToken} from '../actions/userActions';
@@ -21,10 +21,10 @@ class Header extends Component {
 
     navbarLinks() {
      const   {loggedIn} = this.props.user;
-     console.log('Inside Header '+loggedIn)
+        console.log('Inside Header ' + loggedIn);
         if (loggedIn) {
             return [
-                <ul>
+                <ul className=" navbar-nav mr-auto">
                     <li className="nav-item">
                         <Link to={"/products"} className="nav-link">
                             Products
@@ -73,7 +73,7 @@ class Header extends Component {
 Header.propTypes = {
     getToken: PropTypes.func.isRequired,
     user: PropTypes.object.isRequired
-}
+};
 const mapStateToProps = (state) => ({
     user: state.user
 });

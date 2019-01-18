@@ -2,8 +2,10 @@ import {
     ADD_USERORDER,
     DELETE_USERORDER,
     GET_USERORDER_ID,
+    GET_USERORDER_NAME,
     GET_USERORDERS,
     SET_USERORDER_ID,
+    SET_USERORDER_NAME,
     USERORDERS_LOADING
 } from '../actions/types';
 
@@ -11,7 +13,8 @@ import {
 const initialState = {
     userOrders: [],
     loading: false,
-    userOrderId: 'test1'
+    userOrderId: 'test1',
+    userOrderName: 'test2'
 };
 
 export default function (state = initialState, action) {
@@ -46,6 +49,16 @@ export default function (state = initialState, action) {
             };
 
         case GET_USERORDER_ID:
+            return {
+                ...state
+            };
+        case SET_USERORDER_NAME:
+            return {
+                ...state,
+                userOrderName: action.payload
+            };
+
+        case GET_USERORDER_NAME:
             return {
                 ...state
             };

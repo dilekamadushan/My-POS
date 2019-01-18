@@ -1,9 +1,9 @@
 import React, {Component} from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import {Button, Col, Container, Form, FormGroup, Input, Label,} from "reactstrap";
+import {Alert, Button, Col, Container, Form, FormGroup, Input, Label} from "reactstrap";
 
 import {connect} from "react-redux";
-import {getToken, signin} from "../actions/userActions";
+import {getAuthError, getToken, signin} from "../actions/userActions";
 
 class SignIn extends Component {
     state = {
@@ -12,6 +12,7 @@ class SignIn extends Component {
     };
 
     componentDidMount() {
+        this.props.getAuthError();
         const {loggedIn} = this.props.user;
         console.log('Inside Sign in did' + loggedIn);
         if (loggedIn) {
@@ -22,13 +23,22 @@ class SignIn extends Component {
     }
 
     errorMessage() {
-        const {authError} = this.props.user;
-        if (authError) {
+        const {auth_error} = this.props.user;
+        if (auth_error) {
+            console.log(auth_error);
             return (
-                <div className="info-red">
-                    Sign In Unsuccessful
-                </div>
+                <Alert color="danger">
+                    Credentials Invalid, Please try again
+                </Alert>
             );
+
+        } else {
+            return (
+
+                <Alert color="success">
+                    Please Enter Credentials to Continue
+                </Alert>
+            )
         }
     }
 
@@ -60,7 +70,7 @@ class SignIn extends Component {
         return (
 
             <Container className="App">
-                {this.errorMessage()}
+
                 <h2>Sign In</h2>
                 <Form className="form" onSubmit={this.onSubmit}>
                     <Col>
@@ -92,6 +102,7 @@ class SignIn extends Component {
                     </Col>
                     <Button>Submit</Button>
                 </Form>
+                {this.errorMessage()}
             </Container>
         );
 
@@ -103,5 +114,5 @@ const mapStateToProps = state => ({
 });
 export default connect(
     mapStateToProps,
-    {signin, getToken}
+    {signin, getToken, getAuthError}
 )(SignIn);

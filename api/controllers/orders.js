@@ -169,7 +169,7 @@ exports.orders_delete_order = (req, res, next) => {
 exports.orders_getOrders_by_userOrderId = (req, res, next) => {
     Order.find({userOrderId: req.params.userOrderId})
         .select("product quantity _id")
-        .populate("product", "name")
+        .populate("product")
         .exec()
         .then(docs => {
             // console.log(docs);

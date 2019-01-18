@@ -38,7 +38,6 @@ class App extends Component {
 
                             </div>
                         </nav>
-                        {" "}
                         <br/>
                         <h2>Welcome to Sysco LABS POS</h2> <br/>
                         <Switch>
