@@ -77,7 +77,7 @@ exports.user_login = (req, res, next) => {
                     });
                 }
                 res.status(401).json({
-                    message: "Auth failed"
+                    token: "Auth failed"
                 });
             });
         })

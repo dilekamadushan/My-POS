@@ -6,17 +6,21 @@ export const signup = (user) => dispatch => {
         .then(res =>
             dispatch({
                 type: SIGNUP,
-            }))
+            })
+        )
 };
 
 export const signin = (user) => dispatch => {
-    axios.post(`/user/login`, user).then(res =>
-        dispatch({
-            type: SIGNIN,
-            payload: res.data.token
+    axios.post(`/user/login`, user)
+        .then(res =>
 
-        })
-    )
+            dispatch({
+                type: SIGNIN,
+                payload: res.data.token
+            })
+        )
+
+
 };
 export const getToken = () => {
     return {

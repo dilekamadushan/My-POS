@@ -1,19 +1,36 @@
 import React, {Component} from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import {
-    Container, Col, Form,
-    FormGroup, Label, Input,
-    Button,
-} from "reactstrap";
+import {Button, Col, Container, Form, FormGroup, Input, Label,} from "reactstrap";
 
 import {connect} from "react-redux";
-import {signin} from "../actions/userActions";
+import {getToken, signin} from "../actions/userActions";
 
 class SignIn extends Component {
     state = {
         email: "",
         password: ""
     };
+
+    componentDidMount() {
+        const {loggedIn} = this.props.user;
+        console.log('Inside Sign in did' + loggedIn);
+        if (loggedIn) {
+            this.props.history.push('/products');
+        }
+
+
+    }
+
+    errorMessage() {
+        const {authError} = this.props.user;
+        if (authError) {
+            return (
+                <div className="info-red">
+                    Sign In Unsuccessful
+                </div>
+            );
+        }
+    }
 
     onChange = e => {
         this.setState({[e.target.name]: e.target.value});
@@ -28,12 +45,22 @@ class SignIn extends Component {
         };
         //Add User
         this.props.signin(newUser);
-
+        const {loggedIn} = this.props.user;
+        console.log('Inside Sign in ' + loggedIn);
+        if (loggedIn) {
+            this.props.history.push('/products');
+        }
     };
 
     render() {
+        const {loggedIn} = this.props.user;
+        if (loggedIn) {
+            this.props.history.push('/products')
+        }
         return (
+
             <Container className="App">
+                {this.errorMessage()}
                 <h2>Sign In</h2>
                 <Form className="form" onSubmit={this.onSubmit}>
                     <Col>
@@ -67,6 +94,7 @@ class SignIn extends Component {
                 </Form>
             </Container>
         );
+
     }
 }
 
@@ -75,5 +103,5 @@ const mapStateToProps = state => ({
 });
 export default connect(
     mapStateToProps,
-    {signin}
+    {signin, getToken}
 )(SignIn);

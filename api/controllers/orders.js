@@ -9,6 +9,7 @@ exports.orders_get_all = (req, res, next) => {
         .populate("product", "name")
         .exec()
         .then(docs => {
+            console.log(docs);
             res.status(200).json({
                 count: docs.length,
                 orders: docs.map(doc => {
@@ -39,37 +40,81 @@ exports.orders_create_order = (req, res, next) => {
                     message: "Product not found"
                 });
             }
-            const order = new Order({
-                _id: mongoose.Types.ObjectId(),
-                quantity: req.body.quantity,
-                product: req.body.productId,
-                userOrderId: req.body.orderId
-            });
-            return order.save();
-        })
-        .then(result => {
-            Order.populate(result, {path: "product"}, function (err, newOrder) {
+            console.log(req.body.userOrderId + ' ' + req.body.productId);
+            //userOrderId: "5c3bc2f4fe5e56139ac248da" ,
+            Order.find({userOrderId: req.body.userOrderId, product: req.body.productId})
+                .then(docs => {
+                    console.log('here', docs);
+                    if (docs.length > 0) {
+                        console.log('I found a doc' + docs[0]);
+                        Order.findOneAndUpdate({_id: docs[0]._id}, {$inc: {quantity: req.body.quantity}}).then(updatedOrder => {
+                            Order.populate(docs[0], {path: "product"}, function (err, newOrder) {
 
-                console.log('i am in the server' + newOrder);
-                res.status(201).json({
-                    message: "Order stored",
-                    createdOrder: {
-                        _id: newOrder._id,
-                        product: newOrder.product,
-                        quantity: newOrder.quantity
-                    },
-                    request: {
-                        type: "GET",
-                        url: "http://localhost:3000/orders/" + newOrder._id
+                                console.log('i am in the server' + newOrder);
+                                res.status(201).json({
+                                    message: "Order stored",
+                                    createdOrder: {
+                                        _id: updatedOrder._id,
+                                        product: updatedOrder.product,
+                                        quantity: updatedOrder.quantity
+                                    },
+                                    request: {
+                                        type: "GET",
+                                        url: "http://localhost:3000/orders/" + updatedOrder._id
+                                    }
+                                });
+                            });
+
+                        }).catch(err => {
+                            return res.send(500, {errorInFindAndUpdate: err});
+                        });
+
+                    } else {
+                        console.log('I did not find a doc' + req.body.userOrderId + ' ' + req.body.productId);
+                        const order = new Order({
+                            _id: mongoose.Types.ObjectId(),
+                            quantity: req.body.quantity,
+                            product: req.body.productId,
+                            userOrderId: req.body.userOrderId
+                        });
+                        order.save().then(result => {
+                            Order.populate(result, {path: "product"}, function (err, newOrder) {
+
+                                console.log('i am in the server' + newOrder);
+                                res.status(201).json({
+                                    message: "Order stored",
+                                    createdOrder: {
+                                        _id: newOrder._id,
+                                        product: newOrder.product,
+                                        quantity: newOrder.quantity
+                                    },
+                                    request: {
+                                        type: "GET",
+                                        url: "http://localhost:3000/orders/" + newOrder._id
+                                    }
+                                });
+                            });
+
+                        }).catch(err => {
+                            res.status(500).json({
+                                errorIn2: err
+                            });
+
+                        });
                     }
-                });
-            });
 
+
+                })
+                .catch(err => {
+                    res.status(500).json({
+                        errorIn3: err
+                    });
+                });
         })
         .catch(err => {
             console.log(err);
             res.status(500).json({
-                error: err
+                errorIn4: err
             });
         });
 };
@@ -125,6 +170,7 @@ exports.orders_getOrders_by_userOrderId = (req, res, next) => {
         .populate("product", "name")
         .exec()
         .then(docs => {
+            // console.log(docs);
             res.status(200).json({
                 count: docs.length,
                 orders: docs.map(doc => {
@@ -146,3 +192,46 @@ exports.orders_getOrders_by_userOrderId = (req, res, next) => {
             });
         });
 };
+
+/*exports.orders_create_order = (req, res, next) => {
+    Product.findById(req.body.productId)
+        .then(product => {
+            if (!product) {
+                return res.status(404).json({
+                    message: "Product not found"
+                });
+            }
+            const order = new Order({
+                _id: mongoose.Types.ObjectId(),
+                quantity: req.body.quantity,
+                product: req.body.productId,
+                userOrderId: req.body.orderId
+            });
+            return order.save();
+        })
+        .then(result => {
+            Order.populate(result, {path: "product"}, function (err, newOrder) {
+
+                console.log('i am in the server' + newOrder);
+                res.status(201).json({
+                    message: "Order stored",
+                    createdOrder: {
+                        _id: newOrder._id,
+                        product: newOrder.product,
+                        quantity: newOrder.quantity
+                    },
+                    request: {
+                        type: "GET",
+                        url: "http://localhost:3000/orders/" + newOrder._id
+                    }
+                });
+            });
+
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json({
+                error: err
+            });
+        });
+};*/

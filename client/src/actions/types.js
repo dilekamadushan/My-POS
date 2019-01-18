@@ -19,3 +19,4 @@ export const ORDERS_LOADING = 'ORDERS_LOADING';
 export const SIGNUP = 'SIGNUP';
 export const SIGNIN = 'SIGNIN';
 export const GET_TOKEN = 'GET_TOKEN';
+export const AUTH_ERROR = 'AUTH_ERROR';
