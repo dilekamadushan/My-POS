@@ -1,8 +1,8 @@
-import React, { Component } from "react";
-import { Container, ListGroup, ListGroupItem, Button } from "reactstrap";
-import { CSSTransition, TransitionGroup } from "react-transition-group";
+import React, {Component} from "react";
+import {Button, Container, ListGroup, ListGroupItem} from "reactstrap";
+import {CSSTransition, TransitionGroup} from "react-transition-group";
 import {connect} from 'react-redux';
-import {getProducts, deleteProduct} from '../../actions/productActions';
+import {deleteProduct, getProducts} from '../../actions/productActions';
 import PropTypes from 'prop-types';
 
 class ProductList extends Component {
@@ -14,7 +14,7 @@ class ProductList extends Component {
   onDeleteClick = (id)=>{
     this.props.deleteProduct(id)
 
-  }
+  };
 
   render() {
     const { products } = this.props.product;
@@ -22,7 +22,7 @@ class ProductList extends Component {
       <Container>
         <ListGroup>
           <TransitionGroup >
-            {products.map(({ _id, name }) => (
+              {products.map(({_id, name, price}) => (
               <CSSTransition key={_id} timeout={500} classNames="fade">
                 <ListGroupItem>
                   <Button
@@ -33,7 +33,9 @@ class ProductList extends Component {
                   >
                    &times;
                   </Button>
-                  {name}
+
+                    <span className="second-word-formatting m-2"><h3> {name} {price}$</h3></span>
+
                 </ListGroupItem>
               </CSSTransition>
             ))}
@@ -47,7 +49,7 @@ class ProductList extends Component {
 ProductList.propTypes = {
   getProducts: PropTypes.func.isRequired,
   product: PropTypes.object.isRequired
-}
+};
 const mapStateToProps = (state) => ({
   product: state.product
 });

@@ -15,6 +15,8 @@ export const SET_USERORDER_ID = 'SET_USERORDER_ID';
 export const SET_USERORDER_NAME = 'SET_USERORDER_NAME';
 export const GET_USERORDER_ID = 'GET_USERORDER_ID';
 export const GET_USERORDER_NAME = 'GET_USERORDER_NAME';
+export const SET_USERORDER_INFO = 'SET_USERORDER_INFO';
+export const GET_USERORDER_INFO = 'GET_USERORDER_INFO';
 
 export const GET_ORDERS = 'GET_ORDERS';
 export const ADD_ORDER = 'ADD_ORDER';
@@ -23,6 +25,7 @@ export const ORDERS_LOADING = 'ORDERS_LOADING';
 
 export const SIGNUP = 'SIGNUP';
 export const SIGNIN = 'SIGNIN';
+export const SIGNOUT = 'SIGNOUT';
 export const GET_TOKEN = 'GET_TOKEN';
 export const SET_AUTH_ERROR = 'SET_AUTH_ERROR';
 export const GET_AUTH_ERROR = 'GET_AUTH_ERROR';

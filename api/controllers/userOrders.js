@@ -88,6 +88,7 @@ exports.userOrders_create_userOrder = (req, res, next) => {
                 createdUserOrder: {
                     name: result.name,
                     _id: result._id,
+                    createdDate: result.date,
                     request: {
                         type: "GET",
                         url: "http://localhost:3000/userOrders/" + result._id

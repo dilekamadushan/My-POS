@@ -2,9 +2,11 @@ import {
     ADD_USERORDER,
     DELETE_USERORDER,
     GET_USERORDER_ID,
+    GET_USERORDER_INFO,
     GET_USERORDER_NAME,
     GET_USERORDERS,
     SET_USERORDER_ID,
+    SET_USERORDER_INFO,
     SET_USERORDER_NAME,
     USERORDERS_LOADING
 } from '../actions/types';
@@ -59,6 +61,18 @@ export default function (state = initialState, action) {
             };
 
         case GET_USERORDER_NAME:
+            return {
+                ...state
+            };
+        case SET_USERORDER_INFO:
+            let valueArray = action.payload.split(" ");
+            return {
+                ...state,
+                userOrderId: valueArray[0],
+                userOrderName: valueArray[1]
+            };
+
+        case GET_USERORDER_INFO:
             return {
                 ...state
             };

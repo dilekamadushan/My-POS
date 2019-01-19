@@ -63,8 +63,8 @@ class SignIn extends Component {
     };
 
     render() {
-        const {loggedIn} = this.props.user;
-        if (loggedIn) {
+        const {isLogged} = this.props.user;
+        if (isLogged) {
             this.props.history.push('/userOrders')
         }
         return (
@@ -100,7 +100,7 @@ class SignIn extends Component {
                             </Col>
                         </FormGroup>
                     </Col>
-                    <Button>Submit</Button>
+                    <Button color="primary">SignIn</Button>
                 </Form>
                 </div>
                 {this.errorMessage()}

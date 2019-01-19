@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {GET_AUTH_ERROR, GET_TOKEN, SET_AUTH_ERROR, SIGNIN, SIGNUP} from './types';
+import {GET_AUTH_ERROR, GET_TOKEN, SET_AUTH_ERROR, SIGNIN, SIGNOUT, SIGNUP} from './types';
 
 export const signup = (user) => dispatch => {
     axios.post(`/user/signup`, user)
@@ -37,3 +37,9 @@ export const getAuthError = () => {
         type: GET_AUTH_ERROR
     };
 };
+export const signOut = () => {
+    return {
+        type: SIGNOUT
+    };
+};
+

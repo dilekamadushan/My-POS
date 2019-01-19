@@ -64,12 +64,12 @@ class ProductListForOrder extends Component {
                                                         {name}
                                                     </Alert></Col>
                                                     <Col sm="12" md={{size: 6, offset: 3}}> <Alert color="warning">
-                                                        {price}
+                                                        {price} $
                                                     </Alert></Col>
 
                                                 </Row>
 
-                                                <CardText>Some quick example text to build on the card title and make up
+                                                <CardText>
                                                 </CardText>
                                                 <Button
                                                     className="badge-primary"

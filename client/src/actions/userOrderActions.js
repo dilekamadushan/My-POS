@@ -4,9 +4,11 @@ import {
     DELETE_USERORDER,
     GET_USERORDER,
     GET_USERORDER_ID,
+    GET_USERORDER_INFO,
     GET_USERORDER_NAME,
     GET_USERORDERS,
     SET_USERORDER_ID,
+    SET_USERORDER_INFO,
     SET_USERORDER_NAME,
     USERORDERS_LOADING
 } from './types';
@@ -81,5 +83,17 @@ export const setUserOrderName = (userOrderName) => {
 export const getUserOrderName = () => {
     return {
         type: GET_USERORDER_NAME
+    };
+};
+export const getUserOrderInfo = () => {
+    return {
+        type: GET_USERORDER_INFO
+    };
+};
+
+export const setUserOrderInfo = (userOrderInfo) => {
+    return {
+        type: SET_USERORDER_INFO,
+        payload: userOrderInfo
     };
 };

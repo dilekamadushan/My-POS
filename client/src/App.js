@@ -12,8 +12,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import {BrowserRouter as Router, Link, Route, Switch} from 'react-router-dom';
 
 import Products from './components/product/ProductsComponent';
-import UserOrders from './components/userOrder/UserOrdersComponent';
-import Orders from './components/order/OrdersComponent';
+import UserOrdersComponent from './components/userOrder/UserOrdersComponent';
+import OrdersComponent from './components/order/OrdersComponent';
 import SignUp from './components/SignUp';
 import SignIn from './components/SignIn'
 
@@ -30,14 +30,10 @@ class App extends Component {
                             <Link to={"/"} className="navbar-brand">
                                 HOME
                             </Link>
-                            <div
-                                className="collapse navbar-collapse"
-                                id="navbarSupportedContent"
-                            >
+
 
                                 <Header/>
 
-                            </div>
                         </nav>
                         <br/>
                         <Container>
@@ -51,9 +47,9 @@ class App extends Component {
                         <Switch>
                             <Route exact path="/signup" component={SignUp}/>
                             <Route exact path="/signin" component={SignIn}/>
-                            <Route path='/orders/:userOrderId' component={Orders}/>
+                            <Route path='/orders/:userOrderId' component={OrdersComponent}/>
                             <Route path="/products" component={Products}/>
-                            <Route path="/userOrders" component={UserOrders}/>
+                            <Route path="/userOrders" component={UserOrdersComponent}/>
                         </Switch>
                     </div>
                 </Provider>
