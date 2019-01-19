@@ -30,28 +30,31 @@ class UserOrderList extends Component {
       <Container>
         <ListGroup>
           <TransitionGroup>
-            {userOrders.map(({ _id, name }) => (
+            {userOrders.map(({_id, name, createdDate}) => (
               <CSSTransition key={_id} timeout={500} classNames="fade">
-                <ListGroupItem>
+                <ListGroupItem className="m-2">
                   <Link to={"/orders/" + _id}>
                     <Button
-                      className="btn btn-primary"
-                      color="primary"
-                      size="sm"
-                      onClick={this.onClickSetUserOrderID.bind(this, _id)}
+                        className="btn btn-primary"
+                        color="primary"
+                        size="md"
+                        onClick={this.onClickSetUserOrderID.bind(this, _id)}
                     >
                       Edit
                     </Button>
                   </Link>
+
                   <Button
-                    className="remove-btn"
-                    color="danger"
-                    size="sm"
-                    onClick={this.onDeleteClick.bind(this, _id)}
+                      className="remove-btn m-2"
+                      color="danger"
+                      size="sm"
+                      onClick={this.onDeleteClick.bind(this, _id)}
                   >
                     &times;
                   </Button>
-                  {name}
+                  <span className="second-word-formatting m-2"><h3>{name}</h3></span>
+
+                  <span className="second-word-formatting m-2">{createdDate.toString().slice(0, 10)}</span>
                 </ListGroupItem>
               </CSSTransition>
             ))}

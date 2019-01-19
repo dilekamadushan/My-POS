@@ -56,7 +56,7 @@ class ProductModalForOrder extends Component {
             <div>
 
                 <Modal isOpen={this.returnBooleanForModal()} toggle={this.toggle}>
-                    <ModalHeader toggle={this.toggle}>Add To Products</ModalHeader>
+                    <ModalHeader toggle={this.toggle}>Add To Cart</ModalHeader>
                     <ModalBody>
                         <Form onSubmit={this.onSubmit}>
                             <FormGroup>

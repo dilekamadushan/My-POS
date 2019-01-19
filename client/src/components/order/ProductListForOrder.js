@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import {Button, Card, CardBody, CardImg, CardSubtitle, CardText, CardTitle, Container, ListGroup} from "reactstrap";
+import {Alert, Button, Card, CardBody, CardImg, CardText, Col, Container, ListGroup, Row} from "reactstrap";
 import {CSSTransition, TransitionGroup} from "react-transition-group";
 import {connect} from 'react-redux';
 import {getProducts, setProductId} from '../../actions/productActions';
@@ -47,30 +47,37 @@ class ProductListForOrder extends Component {
             <Container>
                 <ListGroup>
                     <TransitionGroup>
-                        {products.map(({_id, name, imageURL}) => (
+                        {products.map(({_id, name, price, imageURL}) => (
                             <CSSTransition key={_id} timeout={500} classNames="fade">
                                 {
 
-                                    <div>
-                                        <Card>
-                                            <CardImg top width="100%"
+                                    <div className="m-lg-5">
+                                        <Card className="md">
+                                            <CardImg top width="40%" height="400" className="md"
                                                      src={imageURL}
                                                      alt="Card image cap"/>
-                                            <CardBody>
-                                                <CardTitle>{name}</CardTitle>
-                                                <CardSubtitle>Card subtitle</CardSubtitle>
+                                            <CardBody className="md">
+
+
+                                                <Row>
+                                                    <Col sm="12" md={{size: 6, offset: 3}}> <Alert color="primary">
+                                                        {name}
+                                                    </Alert></Col>
+                                                    <Col sm="12" md={{size: 6, offset: 3}}> <Alert color="warning">
+                                                        {price}
+                                                    </Alert></Col>
+
+                                                </Row>
+
                                                 <CardText>Some quick example text to build on the card title and make up
-                                                    the bulk of the card's content.</CardText>
-                                                {/* <Button className="badge-primary"
-                                                        onClick={this.onClickAddOrder.bind(this, _id)}>Add to
-                                                    Order</Button>*/}
+                                                </CardText>
                                                 <Button
                                                     className="badge-primary"
                                                     color="dark"
                                                     style={{marginBottom: "2rem"}}
                                                     onClick={this.onClickSetProductIdAndTriggerModal.bind(this, _id)}
                                                 >
-                                                    Add to Order List
+                                                    Add to Cart
                                                 </Button>
                                                 <ProductModalForOrder/>
                                             </CardBody>

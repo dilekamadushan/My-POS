@@ -1,13 +1,7 @@
-import React, { Component } from "react";
-import {
-    Collapse,
-    Navbar,
-    NavbarToggler,
-    NavbarBrand,
-    Container
-} from "reactstrap";
+import React, {Component} from "react";
+import {Collapse, Container, Navbar, NavbarBrand, NavbarToggler} from "reactstrap";
 
-class OrderAppNavbar extends Component {
+class OrderTitle extends Component {
     state = {
         isOpen: false
     };
@@ -23,7 +17,7 @@ class OrderAppNavbar extends Component {
             <div>
                 <Navbar color="dark" dark expand="sm" className="mb-5">
                     <Container>
-                        <NavbarBrand href="/">Order List</NavbarBrand>
+                        <NavbarBrand href="/">Item List</NavbarBrand>
                         <NavbarToggler onClick={this.toggle} />
                         <Collapse isOpen={this.state.isOpen} navbar>
                         </Collapse>
@@ -34,4 +28,4 @@ class OrderAppNavbar extends Component {
     }
 }
 
-export default OrderAppNavbar;
+export default OrderTitle;

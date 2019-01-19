@@ -1,17 +1,8 @@
-import React, { Component } from "react";
-import {
-  Button,
-  Modal,
-  ModalHeader,
-  ModalBody,
-  Form,
-  FormGroup,
-  Label,
-  Input
-} from "reactstrap";
+import React, {Component} from "react";
+import {Button, Form, FormGroup, Input, Label, Modal, ModalBody, ModalHeader} from "reactstrap";
 
-import { connect } from "react-redux";
-import { addUserOrder } from "../../actions/userOrderActions";
+import {connect} from "react-redux";
+import {addUserOrder} from "../../actions/userOrderActions";
 
 class UserOrderModal extends Component {
   state = {
@@ -50,15 +41,15 @@ class UserOrderModal extends Component {
           style={{ marginBottom: "2rem" }}
           onClick={this.toggle}
         >
-          Add UserOrder
+          Add Cart
         </Button>
 
         <Modal isOpen={this.state.modal} toggle={this.toggle}>
-          <ModalHeader toggle={this.toggle}>Add To UserOrders</ModalHeader>
+          <ModalHeader toggle={this.toggle}>Add a cart</ModalHeader>
           <ModalBody>
             <Form onSubmit={this.onSubmit}>
               <FormGroup>
-                <Label for="userOrder">UserOrder</Label>
+                <Label for="userOrder">Cart name</Label>
 
                 <Input
                   type="text"

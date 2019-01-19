@@ -28,7 +28,7 @@ class SignIn extends Component {
             console.log(auth_error);
             return (
                 <Alert color="danger">
-                    Credentials Invalid, Please try again
+                    Invalid Credentials, Please try again!!!
                 </Alert>
             );
 
@@ -36,7 +36,7 @@ class SignIn extends Component {
             return (
 
                 <Alert color="success">
-                    Please Enter Credentials to Continue
+                    Please enter credentials to continue...
                 </Alert>
             )
         }
@@ -70,8 +70,8 @@ class SignIn extends Component {
         return (
 
             <Container className="App">
-
-                <h2>Sign In</h2>
+                <div className="m-4">
+                    <h2><b>Sign In</b></h2>
                 <Form className="form" onSubmit={this.onSubmit}>
                     <Col>
                         <FormGroup>
@@ -102,6 +102,7 @@ class SignIn extends Component {
                     </Col>
                     <Button>Submit</Button>
                 </Form>
+                </div>
                 {this.errorMessage()}
             </Container>
         );

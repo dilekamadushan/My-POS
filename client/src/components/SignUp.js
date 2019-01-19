@@ -1,10 +1,6 @@
 import React, {Component} from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import {
-    Container, Col, Form,
-    FormGroup, Label, Input,
-    Button,
-} from "reactstrap";
+import {Button, Col, Container, Form, FormGroup, Input, Label,} from "reactstrap";
 
 import {connect} from "react-redux";
 import {signup} from "../actions/userActions";
@@ -28,13 +24,14 @@ class SignUp extends Component {
         };
         //Add User
         this.props.signup(newUser);
+        this.props.history.push('/signin');
 
     };
 
     render() {
         return (
             <Container className="App">
-                <h2>Sign Up</h2>
+                <h2><b>Sign Up</b></h2>
                 <Form className="form" onSubmit={this.onSubmit}>
                     <Col>
                         <FormGroup>

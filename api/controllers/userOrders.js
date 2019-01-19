@@ -5,7 +5,6 @@ const Product = require("../models/product");
 
 exports.userOrders_get_all = (req, res, next) => {
     UserOrder.find()
-        .select("_id name")
         .exec()
         .then(docs => {
             res.status(200).json({
@@ -14,6 +13,7 @@ exports.userOrders_get_all = (req, res, next) => {
                     return {
                         _id: doc._id,
                         name: doc.name,
+                        createdDate: doc.date,
                         request: {
                             type: "GET",
                             url: "http://localhost:3000/userOrders/" + doc._id

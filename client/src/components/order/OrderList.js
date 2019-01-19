@@ -4,6 +4,7 @@ import {CSSTransition, TransitionGroup} from "react-transition-group";
 import {connect} from 'react-redux';
 import {deleteOrder, getOrders} from '../../actions/orderActions';
 import {getUserOrderID, getUserOrderName} from '../../actions/userOrderActions';
+import OrderTitle from "./OrderTitle";
 import PropTypes from 'prop-types';
 
 class OrderList extends Component {
@@ -37,6 +38,7 @@ class OrderList extends Component {
         return (
             <Container>
                 <h2>{userOrderName} <span className="second-word-formatting">{this.calculatePrice()}</span></h2>
+                <OrderTitle/>
                 <ListGroup>
                     <TransitionGroup>
                         {orders.map(({_id, quantity, product}) => (
@@ -50,7 +52,8 @@ class OrderList extends Component {
                                     >
                                         &times;
                                     </Button>
-                                    {product.name} <span className="second-word-formatting">{quantity}</span>
+                                    <h3> {product.name} </h3><span
+                                    className="second-word-formatting"><h5><b>{quantity}</b></h5></span>
                                 </ListGroupItem>
                             </CSSTransition>
                         ))}
