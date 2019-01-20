@@ -52,15 +52,15 @@ class UserOrderModal extends Component {
                 <Label for="userOrder">Cart name</Label>
 
                 <Input
-                  type="text"
-                  name="name"
-                  id="userOrder"
-                  placeholder="Add shopping UserOrder"
-                  onChange={this.onChange}
+                    type="text"
+                    name="name"
+                    id="userOrder"
+                    placeholder="Add Cart"
+                    onChange={this.onChange}
                 />
 
                 <Button color="dark" style={{ marginTop: "2rem" }} block>
-                  Add UserOrder
+                  Add Cart
                 </Button>
               </FormGroup>
             </Form>

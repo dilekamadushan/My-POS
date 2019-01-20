@@ -18,9 +18,7 @@ class UserOrderList extends Component {
 
     onClickSetUserOrderDetails = value => {
         console.log(value);
-        let valueArray = value.split(" ");
         this.props.setUserOrderInfo(value);
-        console.log(valueArray[1])
     };
 
 

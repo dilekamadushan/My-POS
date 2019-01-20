@@ -66,10 +66,16 @@ export default function (state = initialState, action) {
             };
         case SET_USERORDER_INFO:
             let valueArray = action.payload.split(" ");
+            let nameArray = valueArray;
+            nameArray.shift();
+            let name = '';
+            nameArray.forEach(part => {
+                name += part + " "
+            });
             return {
                 ...state,
                 userOrderId: valueArray[0],
-                userOrderName: valueArray[1]
+                userOrderName: name
             };
 
         case GET_USERORDER_INFO:

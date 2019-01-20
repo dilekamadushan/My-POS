@@ -47,7 +47,7 @@ class OrderList extends Component {
                                          alt="Card image cap"/>
                                 <CardBody>
                                     <Row>
-                                        <Col sm="12" md={{size: 6, offset: 3}}> <Alert color="primary">
+                                        <Col sm="12" md={{size: 9, offset: 1}}> <Alert color="primary">
                                             {userOrderName}
                                         </Alert></Col>
                                         <Col sm="12" md={{size: 6, offset: 3}}> <Alert color="danger">
@@ -77,6 +77,12 @@ class OrderList extends Component {
                                     </Button>
                                     <h3> {product.name} </h3><span
                                     className="second-word-formatting"><h5><b>{quantity}</b></h5></span>
+                                    <Row>
+                                        <Col sm="12" md={{size: 6, offset: 3}}> <Alert color="danger">
+                                            <b>  {product.price * quantity} $</b>
+                                        </Alert></Col>
+
+                                    </Row>
                                 </ListGroupItem>
                             </CSSTransition>
                         ))}
