@@ -4,19 +4,19 @@ import Container from "reactstrap/es/Container";
 
 const items = [
     {
-        src: 'http://syscolabs.lk/wp-content/uploads/2016/07/1-1596x663.jpg',
+        src: 'https://s3.amazonaws.com/cake-corp-s3.trycake.com/wp-content/uploads/2017/01/iStock-527912462-1.jpg',
         altText: 'Slide 1',
-        caption: 'Sysco LABS'
+        caption: 'Sysco LABS '
     },
     {
-        src: 'http://syscolabs.lk/wp-content/uploads/2019/01/2560-2-1596x663.png',
+        src: 'https://visitsunsetcountry.com/sites/default/files/styles/big/public/sysco-food-services-inc/sysco-facility.jpg?itok=MCrMTWjK',
         altText: 'Slide 2',
-        caption: 'Sysco LABS'
+        caption: 'Sysco LABS '
     },
     {
         src: 'http://igonsol.com/wp-content/uploads/2018/08/cover-copy3.jpg',
         altText: 'Slide 3',
-        caption: 'Sysco LABS'
+        caption: 'Sysco LABS '
     }
 ];
 
@@ -66,7 +66,7 @@ class CarouselComponent extends Component {
                     onExited={this.onExited}
                     key={item.src}
                 >
-                    <img src={item.src} alt={item.altText}/>
+                    <img src={item.src} alt={item.altText} width="1200" height="600"/>
                     <CarouselCaption captionText={item.caption} captionHeader={item.caption}/>
                 </CarouselItem>
             );
