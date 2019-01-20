@@ -19,7 +19,7 @@ class Products extends Component {
         const {isLogged} = this.props.user;
         if (!isLogged) {
             console.log('here in userorders act' + isLogged);
-            this.props.history.push('/signin')
+            this.props.history.push('/')
         }
         return (
             <div className="App">

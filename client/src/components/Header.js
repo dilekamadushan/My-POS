@@ -42,12 +42,7 @@ class Header extends Component {
                         </Link>
 
                     </li>
-                    {/* <li className="nav-item">
-                        <Link to={"/signout"} className="nav-link">
-                            Sign Out
-                        </Link>
 
-                    </li>*/}
                     <Button color="primary" className="" onClick={this.signOut}>Sign Out</Button>{' '}
                 </ul>
             ];

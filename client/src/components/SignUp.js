@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import {Button, Col, Container, Form, FormGroup, Input, Label,} from "reactstrap";
+import {Alert, Button, Col, Container, Form, FormGroup, Input, Label,} from "reactstrap";
 
 import {connect} from "react-redux";
 import {signup} from "../actions/userActions";
@@ -62,6 +62,9 @@ class SignUp extends Component {
                     </Col>
                     <Button>Submit</Button>
                 </Form>
+                <Alert color="success">
+                    Please Sign Up if you don't have an account already
+                </Alert>
             </Container>
         );
     }
