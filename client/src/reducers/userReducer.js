@@ -1,5 +1,6 @@
 //reducer file to manage  user data
 import {AUTH_ERROR, GET_AUTH_ERROR, GET_TOKEN, SET_AUTH_ERROR, SIGNIN, SIGNOUT, SIGNUP} from '../actions/types';
+import Cookies from "universal-cookie/cjs";
 
 export const initialState = {
     user: '',
