@@ -20,8 +20,9 @@ class Header extends Component {
     };
 
     navbarLinks() {
-        const {isLogged} = this.props.user;
-        if (isLogged) {
+        const cookies = new Cookies();
+        let cookie = cookies.get('SyscoPOSCookie');
+        if (cookie.length > 15) {
             return [
                 <ul className=" navbar-nav mr-auto">
                     <li className="nav-item">

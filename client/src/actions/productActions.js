@@ -6,9 +6,12 @@ import {
     GET_PRODUCT_ID,
     GET_PRODUCTS,
     PRODUCTS_LOADING,
+    SET_AUTH_ERROR,
     SET_PRODUCT_ID,
     SET_PRODUCT_MODAL_FOR_ORDER
 } from './types';
+
+const cookies = new Cookies();
 
 export const getProducts = () => dispatch => {
     dispatch(setProductsLoading());
@@ -20,7 +23,13 @@ export const getProducts = () => dispatch => {
             dispatch({
                 type: GET_PRODUCTS,
                 payload: res.data.products
-            }))
+            })).catch(error => {
+        cookies.set('SyscoPOSCookie', 'Invalid', {path: '/'});
+        dispatch({
+            type: SET_AUTH_ERROR
+        })
+
+    })
 };
 
 export const deleteProduct = (id) => dispatch => {
@@ -30,7 +39,13 @@ export const deleteProduct = (id) => dispatch => {
             payload: id
 
         })
-    )
+    ).catch(error => {
+        cookies.set('SyscoPOSCookie', 'Invalid', {path: '/'});
+        dispatch({
+            type: SET_AUTH_ERROR
+        })
+
+    })
 };
 
 export const addProduct = (product) => dispatch => {
@@ -41,7 +56,13 @@ export const addProduct = (product) => dispatch => {
                 type: ADD_PRODUCT,
                 payload: res.data.createdProduct
             })
-        )
+        ).catch(error => {
+        cookies.set('SyscoPOSCookie', 'Invalid', {path: '/'});
+        dispatch({
+            type: SET_AUTH_ERROR
+        })
+
+    })
 };
 
 export const setProductsLoading = () => {

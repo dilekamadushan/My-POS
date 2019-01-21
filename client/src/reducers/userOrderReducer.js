@@ -75,7 +75,7 @@ export default function (state = initialState, action) {
             });
             return {
                 ...state,
-                userOrderId: valueArray[0],
+                userOrderId: action.payload.split(" ")[0],
                 userOrderName: name
             };
 

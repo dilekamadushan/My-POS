@@ -16,9 +16,10 @@ class Products extends Component {
 
 
     render() {
-        const {isLogged} = this.props.user;
-        if (!isLogged) {
-            this.props.history.push('/')
+        const cookies = new Cookies();
+        let cookie = cookies.get('SyscoPOSCookie');
+        if (cookie.toString().length < 15) {
+            this.props.history.push('/signin')
         }
         return (
             <div className="App">

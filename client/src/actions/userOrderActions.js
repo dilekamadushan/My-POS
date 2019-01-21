@@ -8,10 +8,13 @@ import {
     GET_USERORDER_INFO,
     GET_USERORDER_NAME,
     GET_USERORDERS,
+    SET_AUTH_ERROR,
     SET_USERORDER_ID,
     SET_USERORDER_INFO,
     USERORDERS_LOADING
 } from './types';
+
+const cookies = new Cookies();
 
 export const getUserOrders = () => dispatch => {
     dispatch(setUserOrdersLoading());
@@ -20,7 +23,14 @@ export const getUserOrders = () => dispatch => {
             dispatch({
                 type: GET_USERORDERS,
                 payload: res.data.userOrders
-            }))
+            })).catch(error => {
+
+        cookies.set('SyscoPOSCookie', 'Invalid', {path: '/'});
+        dispatch({
+            type: SET_AUTH_ERROR
+        })
+
+    })
 };
 
 export const deleteUserOrder = (id) => dispatch => {
@@ -30,7 +40,14 @@ export const deleteUserOrder = (id) => dispatch => {
             payload: id
 
         })
-    )
+    ).catch(error => {
+
+        cookies.set('SyscoPOSCookie', 'Invalid', {path: '/'});
+        dispatch({
+            type: SET_AUTH_ERROR
+        })
+
+    })
 };
 
 export const addUserOrder = (userOrder) => dispatch => {
@@ -41,7 +58,14 @@ export const addUserOrder = (userOrder) => dispatch => {
                 type: ADD_USERORDER,
                 payload: res.data.createdUserOrder
             })
-        )
+        ).catch(error => {
+
+        cookies.set('SyscoPOSCookie', 'Invalid', {path: '/'});
+        dispatch({
+            type: SET_AUTH_ERROR
+        })
+
+    })
 };
 
 export const getUserOrder = (id) => dispatch => {
@@ -52,7 +76,14 @@ export const getUserOrder = (id) => dispatch => {
                 type: GET_USERORDER,
                 payload: res.data.userOrder
             })
-        )
+        ).catch(error => {
+
+        cookies.set('SyscoPOSCookie', 'Invalid', {path: '/'});
+        dispatch({
+            type: SET_AUTH_ERROR
+        })
+
+    })
 };
 
 export const setUserOrdersLoading = () => {

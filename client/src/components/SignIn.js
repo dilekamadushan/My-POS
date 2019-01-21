@@ -13,11 +13,12 @@ class SignIn extends Component {
 
     componentDidMount() {
         this.props.getAuthError();
-        const {loggedIn} = this.props.user;
-        if (loggedIn) {
+        const cookies = new Cookies();
+        let cookie = cookies.get('SyscoPOSCookie');
+        if (cookie.toString().length > 15) {
+
             this.props.history.push('/userOrders');
         }
-
 
     }
 
@@ -60,8 +61,9 @@ class SignIn extends Component {
     };
 
     render() {
-        const {isLogged} = this.props.user;
-        if (isLogged) {
+        const cookies = new Cookies();
+        let cookie = cookies.get('SyscoPOSCookie');
+        if (cookie.toString().length > 15) {
             this.props.history.push('/userOrders')
         }
         return (

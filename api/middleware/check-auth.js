@@ -4,8 +4,10 @@ const jwt = require('jsonwebtoken');
 
 module.exports = (req, res, next) => {
     try {
-        const token = req.headers.authorization;
-        req.userData = jwt.verify(token, "SECRET");
+        let cookieString = req.headers.cookie;
+        cookieString = cookieString.split("=")[1];
+        const decoded = jwt.verify(cookieString, "SECRET");
+        req.userData = decoded;
         next();
     } catch (error) {
         return res.status(401).json({

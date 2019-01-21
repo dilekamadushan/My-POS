@@ -20,6 +20,8 @@ export const signin = (user) => dispatch => {
                 payload: res.data.token
             })
         ).catch(error => {
+        const cookies = new Cookies();
+        cookies.set('SyscoPOSCookie', 'Invalid', {path: '/'});
         dispatch({
             type: SET_AUTH_ERROR
         })
