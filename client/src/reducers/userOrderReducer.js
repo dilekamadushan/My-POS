@@ -1,3 +1,4 @@
+//reducer file to manage  redux product data
 import {
     ADD_USERORDER,
     DELETE_USERORDER,
@@ -15,8 +16,8 @@ import {
 const initialState = {
     userOrders: [],
     loading: false,
-    userOrderId: 'test1',
-    userOrderName: 'test2'
+    userOrderId: '',
+    userOrderName: ''
 };
 
 export default function (state = initialState, action) {

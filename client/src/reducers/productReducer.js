@@ -1,3 +1,4 @@
+//reducer file to manage  redux product data
 import {
     ADD_PRODUCT,
     DELETE_PRODUCT,

@@ -1,3 +1,4 @@
+//combined reducers file
 import {combineReducers} from 'redux';
 import productReducer from './productReducer';
 import userOrderReducer from './userOrderReducer';
