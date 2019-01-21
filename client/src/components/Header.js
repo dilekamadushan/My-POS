@@ -26,7 +26,6 @@ class Header extends Component {
 
     navbarLinks() {
         const {isLogged} = this.props.user;
-        console.log('Inside Header ' + isLogged);
         if (isLogged) {
             return [
                 <ul className=" navbar-nav mr-auto">

@@ -1,3 +1,4 @@
+// mongoose schema for UserOrder(Cart) document
 var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 

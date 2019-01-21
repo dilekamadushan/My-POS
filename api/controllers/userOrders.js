@@ -1,7 +1,7 @@
+// /userOrder requests are forwarded to these endpoints from the relevant routes file
 const mongoose = require("mongoose");
 
 const UserOrder = require("../models/userOrder");
-const Product = require("../models/product");
 
 exports.userOrders_get_all = (req, res, next) => {
     UserOrder.find()
@@ -103,44 +103,3 @@ exports.userOrders_create_userOrder = (req, res, next) => {
             });
         });
 };
-
-/* exports.userOrders_add_product= (req, res, next) => {
-  UserOrder.findById(req.params.userOrderId, (err, userOrder) => {
-      if(err) {
-        return res.status(404).json({
-          message: err
-        });
-      }
-      if(!userOrder) {
-        return res.status(404).json({
-          message: "UserOrder not found"
-        });
-      }
-
-      let saveOrder = () => {
-          userOrder.save((err3, savedUserOrder) => {
-              res.jsonp({success: true, order: savedUserOrder});
-          });
-      }
-
-          Product.findById(req.body.productId, (err2, product) => {
-              if(!product) {
-                return res.status(404).json({
-                  message: err
-                });
-              } else {
-                console.log(product);
-                console.log(userOrder);
-                console.log(userOrder.products)
-                  userOrder.products.push(
-                    { product:product._id,
-                    quantity:req.body.quantity}                  );
-                  userOrder.save((err3, savedUserOrder) => {
-                    res.status(201).json({
-                      message:savedUserOrder 
-                    });
-                });
-              }
-          });
-  })
-}; */

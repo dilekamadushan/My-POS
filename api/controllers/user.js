@@ -1,3 +1,4 @@
+// /user requests are forwarded to these endpoints from the relevant routes file
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");

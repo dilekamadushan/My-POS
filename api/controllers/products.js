@@ -1,3 +1,4 @@
+// /product requests are forwarded to these endpoints from the relevant routes file
 const mongoose = require("mongoose");
 const Product = require("../models/product");
 

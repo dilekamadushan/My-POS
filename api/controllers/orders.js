@@ -1,3 +1,4 @@
+// /order requests are forwarded to these endpoints from the relevant routes file
 const mongoose = require("mongoose");
 
 const Order = require("../models/order");
@@ -194,46 +195,3 @@ exports.orders_getOrders_by_userOrderId = (req, res, next) => {
             });
         });
 };
-
-/*exports.orders_create_order = (req, res, next) => {
-    Product.findById(req.body.productId)
-        .then(product => {
-            if (!product) {
-                return res.status(404).json({
-                    message: "Product not found"
-                });
-            }
-            const order = new Order({
-                _id: mongoose.Types.ObjectId(),
-                quantity: req.body.quantity,
-                product: req.body.productId,
-                userOrderId: req.body.orderId
-            });
-            return order.save();
-        })
-        .then(result => {
-            Order.populate(result, {path: "product"}, function (err, newOrder) {
-
-                console.log('i am in the server' + newOrder);
-                res.status(201).json({
-                    message: "Order stored",
-                    createdOrder: {
-                        _id: newOrder._id,
-                        product: newOrder.product,
-                        quantity: newOrder.quantity
-                    },
-                    request: {
-                        type: "GET",
-                        url: "http://localhost:3000/orders/" + newOrder._id
-                    }
-                });
-            });
-
-        })
-        .catch(err => {
-            console.log(err);
-            res.status(500).json({
-                error: err
-            });
-        });
-};*/

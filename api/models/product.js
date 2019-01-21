@@ -1,3 +1,4 @@
+// mongoose schema for Product collection
 const mongoose = require('mongoose');
 
 const productSchema = mongoose.Schema({

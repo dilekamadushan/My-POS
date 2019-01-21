@@ -4,7 +4,7 @@ const checkAuth = require('../middleware/check-auth');
 
 const UserOrdersController = require('../controllers/userOrders');
 
-// Handle incoming GET requests to /orders
+// Handle incoming requests to /userorders
 router.get("/", UserOrdersController.userOrders_get_all);
 
 router.post("/", UserOrdersController.userOrders_create_userOrder);

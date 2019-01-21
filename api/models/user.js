@@ -1,3 +1,4 @@
+// mongoose schema for User collection
 const mongoose = require('mongoose');
 
 const userSchema = mongoose.Schema({

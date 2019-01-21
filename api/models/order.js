@@ -1,3 +1,5 @@
+// mongoose schema for Order collection
+
 const mongoose = require('mongoose');
 
 const orderSchema = mongoose.Schema({
