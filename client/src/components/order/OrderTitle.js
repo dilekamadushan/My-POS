@@ -13,12 +13,12 @@ class OrderTitle extends Component {
     };
 
     render() {
-        return(
+        return (
             <div>
                 <Navbar color="dark" dark expand="sm" className="mb-5">
                     <Container>
                         <NavbarBrand href="/">Item List</NavbarBrand>
-                        <NavbarToggler onClick={this.toggle} />
+                        <NavbarToggler onClick={this.toggle}/>
                         <Collapse isOpen={this.state.isOpen} navbar>
                         </Collapse>
                     </Container>

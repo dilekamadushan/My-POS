@@ -5,98 +5,98 @@ import {connect} from "react-redux";
 import {addProduct} from "../../actions/productActions";
 
 class ProductModal extends Component {
-  state = {
-    modal: false,
-    name: "",
-    price: 0,
-    imageURL: ''
-  };
-
-  toggle = () => {
-    this.setState({ modal: !this.state.modal });
-  };
-
-  onChange = e => {
-    this.setState({ [e.target.name]: e.target.value });
-  };
-
-  onSubmit = e => {
-    e.preventDefault();
-
-    const newProduct = {
-      name: this.state.name,
-      price: this.state.price,
-      imageURL: this.state.imageURL
+    state = {
+        modal: false,
+        name: "",
+        price: 0,
+        imageURL: ''
     };
-    //Add Product via addProduct action
-    this.props.addProduct(newProduct);
 
-    //Close the modal
-    this.toggle();
-  };
+    toggle = () => {
+        this.setState({modal: !this.state.modal});
+    };
 
-  render() {
-    return (
-      <div>
-        <Button
-          color="dark"
-          style={{ marginBottom: "2rem" }}
-          onClick={this.toggle}
-        >
-          Add Product
-        </Button>
+    onChange = e => {
+        this.setState({[e.target.name]: e.target.value});
+    };
 
-        <Modal isOpen={this.state.modal} toggle={this.toggle}>
-          <ModalHeader toggle={this.toggle}>Add To Products</ModalHeader>
-          <ModalBody>
-            <Form onSubmit={this.onSubmit}>
-              <FormGroup>
-                <Label for="product">Product</Label>
+    onSubmit = e => {
+        e.preventDefault();
 
-                <Input
-                  type="text"
-                  name="name"
-                  id="product"
-                  placeholder="Add shopping Product"
-                  onChange={this.onChange}
-                />
+        const newProduct = {
+            name: this.state.name,
+            price: this.state.price,
+            imageURL: this.state.imageURL
+        };
+        //Add Product via addProduct action
+        this.props.addProduct(newProduct);
 
-                <Label for="price">Price</Label>
+        //Close the modal
+        this.toggle();
+    };
 
-                <Input
-                  type="number"
-                  name="price"
-                  id="price"
-                  placeholder="Add Price"
-                  onChange={this.onChange}
-                />
-
-                <Label for="image">Image</Label>
-
-                <Input
-                    type="text"
-                    name="imageURL"
-                    id="imageURL"
-                    placeholder="Add image URL"
-                    onChange={this.onChange}
-                />
-
-                <Button color="dark" style={{ marginTop: "2rem" }} block>
-                  Add Product
+    render() {
+        return (
+            <div>
+                <Button
+                    color="dark"
+                    style={{marginBottom: "2rem"}}
+                    onClick={this.toggle}
+                >
+                    Add Product
                 </Button>
-              </FormGroup>
-            </Form>
-          </ModalBody>
-        </Modal>
-      </div>
-    );
-  }
+
+                <Modal isOpen={this.state.modal} toggle={this.toggle}>
+                    <ModalHeader toggle={this.toggle}>Add To Products</ModalHeader>
+                    <ModalBody>
+                        <Form onSubmit={this.onSubmit}>
+                            <FormGroup>
+                                <Label for="product">Product</Label>
+
+                                <Input
+                                    type="text"
+                                    name="name"
+                                    id="product"
+                                    placeholder="Add shopping Product"
+                                    onChange={this.onChange}
+                                />
+
+                                <Label for="price">Price</Label>
+
+                                <Input
+                                    type="number"
+                                    name="price"
+                                    id="price"
+                                    placeholder="Add Price"
+                                    onChange={this.onChange}
+                                />
+
+                                <Label for="image">Image</Label>
+
+                                <Input
+                                    type="text"
+                                    name="imageURL"
+                                    id="imageURL"
+                                    placeholder="Add image URL"
+                                    onChange={this.onChange}
+                                />
+
+                                <Button color="dark" style={{marginTop: "2rem"}} block>
+                                    Add Product
+                                </Button>
+                            </FormGroup>
+                        </Form>
+                    </ModalBody>
+                </Modal>
+            </div>
+        );
+    }
 }
 
 const mapStateToProps = state => ({
-  product: state.product
+    product: state.product
 });
 export default connect(
-  mapStateToProps,
-  { addProduct }
+    mapStateToProps,
+    {addProduct}
 )(ProductModal);

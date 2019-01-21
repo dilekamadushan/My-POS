@@ -7,50 +7,50 @@ import PropTypes from 'prop-types';
 
 class ProductList extends Component {
 
-  componentDidMount(){
-    this.props.getProducts();
-  }
+    componentDidMount() {
+        this.props.getProducts();
+    }
 
-  onDeleteClick = (id)=>{
-    this.props.deleteProduct(id)
+    onDeleteClick = (id) => {
+        this.props.deleteProduct(id)
 
-  };
+    };
 
-  render() {
-    const { products } = this.props.product;
-    return (
-      <Container>
-        <ListGroup>
-          <TransitionGroup >
-              {products.map(({_id, name, price}) => (
-              <CSSTransition key={_id} timeout={500} classNames="fade">
-                <ListGroupItem>
-                  <Button
-                    className="remove-btn"
-                    color="danger"
-                    size="sm"
-                    onClick={this.onDeleteClick.bind(this,_id)}
-                  >
-                   &times;
-                  </Button>
+    render() {
+        const {products} = this.props.product;
+        return (
+            <Container>
+                <ListGroup>
+                    <TransitionGroup>
+                        {products.map(({_id, name, price}) => (
+                            <CSSTransition key={_id} timeout={500} classNames="fade">
+                                <ListGroupItem>
+                                    <Button
+                                        className="remove-btn"
+                                        color="danger"
+                                        size="sm"
+                                        onClick={this.onDeleteClick.bind(this, _id)}
+                                    >
+                                        &times;
+                                    </Button>
 
-                    <span className="second-word-formatting m-2"><h3> {name} {price}$</h3></span>
+                                    <span className="second-word-formatting m-2"><h3> {name} {price}$</h3></span>
 
-                </ListGroupItem>
-              </CSSTransition>
-            ))}
-          </TransitionGroup>
-        </ListGroup>
-      </Container>
-    );
-  }
+                                </ListGroupItem>
+                            </CSSTransition>
+                        ))}
+                    </TransitionGroup>
+                </ListGroup>
+            </Container>
+        );
+    }
 }
 
 ProductList.propTypes = {
-  getProducts: PropTypes.func.isRequired,
-  product: PropTypes.object.isRequired
+    getProducts: PropTypes.func.isRequired,
+    product: PropTypes.object.isRequired
 };
 const mapStateToProps = (state) => ({
-  product: state.product
+    product: state.product
 });
-export default connect(mapStateToProps, {getProducts, deleteProduct}) (ProductList);
+export default connect(mapStateToProps, {getProducts, deleteProduct})(ProductList);

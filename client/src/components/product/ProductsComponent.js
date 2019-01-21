@@ -18,7 +18,6 @@ class Products extends Component {
     render() {
         const {isLogged} = this.props.user;
         if (!isLogged) {
-            console.log('here in userorders act' + isLogged);
             this.props.history.push('/')
         }
         return (

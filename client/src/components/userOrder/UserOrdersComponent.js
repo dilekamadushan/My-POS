@@ -20,19 +20,19 @@ class UserOrdersComponent extends Component {
             console.log('here in userorders act' + isLogged);
             this.props.history.push('/')
         }
-      return (
-        <div className="App">
-            <UserOrderTitle/>
-          <Container>
+        return (
+            <div className="App">
+                <UserOrderTitle/>
+                <Container>
 
-         
-         <UserOrderModal/>
-         <UserOrderList/>
-          </Container>
-        </div>
-      );
+
+                    <UserOrderModal/>
+                    <UserOrderList/>
+                </Container>
+            </div>
+        );
     }
-  }
+}
 
 UserOrdersComponent.propTypes = {
     getToken: PropTypes.func.isRequired,

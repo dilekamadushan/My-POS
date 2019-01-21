@@ -17,21 +17,6 @@ class ProductListForOrder extends Component {
         console.log('creating order' + userOrderId);
     }
 
-    onClickAddOrder = (id) => {
-
-        const {userOrderId} = this.props.userOrder;
-        console.log('creating order' + userOrderId);
-
-        const newOrder = {
-            productId: id,
-            userOrderId: userOrderId,
-            quantity: 1
-        };
-        this.props.addOrder(newOrder);
-        this.setState({modal: !this.state.modal});
-
-    };
-
     onClickSetProductIdAndTriggerModal = (id) => {
 
 
