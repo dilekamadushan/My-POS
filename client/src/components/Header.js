@@ -1,17 +1,12 @@
 import React, {Component} from "react";
-
 import "bootstrap/dist/css/bootstrap.min.css";
+import Button from "reactstrap/es/Button";
 import "../App.css";
-
-
-import 'bootstrap/dist/css/bootstrap.min.css';
 import {Link} from 'react-router-dom';
-
-
 import {getToken, signOut} from '../actions/userActions';
+
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import Button from "reactstrap/es/Button";
 
 
 class Header extends Component {

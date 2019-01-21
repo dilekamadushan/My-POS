@@ -1,9 +1,9 @@
 import React, {Component} from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import {Alert, Button, Col, Container, Form, FormGroup, Input, Label} from "reactstrap";
+import {getAuthError, getToken, signin} from "../actions/userActions";
 
 import {connect} from "react-redux";
-import {getAuthError, getToken, signin} from "../actions/userActions";
 
 class SignIn extends Component {
     state = {
@@ -54,7 +54,6 @@ class SignIn extends Component {
         //Add User
         this.props.signin(newUser);
         const {loggedIn} = this.props.user;
-        console.log('Inside Sign in ' + loggedIn);
         if (loggedIn) {
             this.props.history.push('/userOrders');
         }
