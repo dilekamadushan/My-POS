@@ -1,8 +1,8 @@
 import React, {Component} from "react";
 import {Button, Form, FormGroup, Input, Label, Modal, ModalBody, ModalHeader} from "reactstrap";
+import {addProduct} from "../../actions/productActions";
 
 import {connect} from "react-redux";
-import {addProduct} from "../../actions/productActions";
 
 class ProductModal extends Component {
     state = {

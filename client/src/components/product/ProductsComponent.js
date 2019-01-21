@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
+import {Container} from "reactstrap";
 import ProductTitle from "./ProductTitle";
 import ProductList from "./ProductList";
 import ProductModal from "./ProductModal";
-import {Container} from "reactstrap";
-
 import {getToken, signOut} from "../../actions/userActions";
+
 import {connect} from "react-redux";
 import PropTypes from 'prop-types'
 
