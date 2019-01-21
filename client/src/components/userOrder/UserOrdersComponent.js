@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
+import {Container} from "reactstrap";
 import UserOrderTitle from "./UserOrderTitle";
 import UserOrderList from "./UserOrderList";
 import UserOrderModal from "./UserOrderModal";
-import {Container} from "reactstrap";
 import {getToken, signOut} from "../../actions/userActions";
+
 import {connect} from "react-redux";
 import PropTypes from 'prop-types'
 
@@ -17,7 +18,6 @@ class UserOrdersComponent extends Component {
     render() {
         const {isLogged} = this.props.user;
         if (!isLogged) {
-            console.log('here in userorders act' + isLogged);
             this.props.history.push('/')
         }
         return (

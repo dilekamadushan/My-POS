@@ -1,8 +1,8 @@
 import React, {Component} from "react";
 import {Button, Form, FormGroup, Input, Label, Modal, ModalBody, ModalHeader} from "reactstrap";
+import {addUserOrder} from "../../actions/userOrderActions";
 
 import {connect} from "react-redux";
-import {addUserOrder} from "../../actions/userOrderActions";
 
 class UserOrderModal extends Component {
     state = {
