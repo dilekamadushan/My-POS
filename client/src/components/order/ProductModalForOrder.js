@@ -1,10 +1,10 @@
 import React, {Component} from "react";
 import {Button, Form, FormGroup, Input, Label, Modal, ModalBody, ModalHeader} from "reactstrap";
-
-import {connect} from "react-redux";
 import {getProductId, setProductModalForOrder} from "../../actions/productActions";
 import {addOrder} from '../../actions/orderActions';
 import {getUserOrderID} from "../../actions/userOrderActions";
+
+import {connect} from "react-redux";
 
 class ProductModalForOrder extends Component {
     state = {
@@ -33,10 +33,7 @@ class ProductModalForOrder extends Component {
         e.preventDefault();
 
         const {userOrderId} = this.props.userOrder;
-        console.log('creating order' + userOrderId);
-
         const {productId} = this.props.product;
-        console.log('creating order' + productId);
 
         const newOrder = {
             productId: productId,
@@ -44,7 +41,6 @@ class ProductModalForOrder extends Component {
             quantity: this.state.quantity
         };
         this.props.addOrder(newOrder);
-
 
         //Close the modal
         this.toggle();

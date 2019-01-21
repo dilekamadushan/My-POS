@@ -1,10 +1,11 @@
 import React, {Component} from "react";
 import {Alert, Button, Card, CardBody, CardImg, Col, Container, ListGroup, ListGroupItem, Row} from "reactstrap";
 import {CSSTransition, TransitionGroup} from "react-transition-group";
-import {connect} from 'react-redux';
 import {deleteOrder, getOrders} from '../../actions/orderActions';
 import {getUserOrderID, getUserOrderName} from '../../actions/userOrderActions';
 import OrderTitle from "./OrderTitle";
+
+import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 
 
@@ -15,7 +16,6 @@ class OrderList extends Component {
         this.props.getUserOrderID();
         this.props.getUserOrderName();
         const {userOrderId} = this.props.userOrder;
-        console.log('in order list component' + userOrderId);
         this.props.getOrders(userOrderId);
     }
 

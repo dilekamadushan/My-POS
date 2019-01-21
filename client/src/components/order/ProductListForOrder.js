@@ -1,20 +1,19 @@
 import React, {Component} from "react";
 import {Alert, Button, Card, CardBody, CardImg, CardText, Col, Container, ListGroup, Row} from "reactstrap";
 import {CSSTransition, TransitionGroup} from "react-transition-group";
-import {connect} from 'react-redux';
+import ProductModalForOrder from "./ProductModalForOrder"
 import {getProducts, setProductId} from '../../actions/productActions';
 import {addOrder} from '../../actions/orderActions';
 import {getUserOrderID} from "../../actions/userOrderActions";
+
+import {connect} from 'react-redux';
 import PropTypes from 'prop-types'
-import ProductModalForOrder from "./ProductModalForOrder"
 
 class ProductListForOrder extends Component {
 
     componentDidMount() {
         this.props.getUserOrderID();
         this.props.getProducts();
-        const {userOrderId} = this.props.userOrder;
-        console.log('creating order' + userOrderId);
     }
 
     onClickSetProductIdAndTriggerModal = (id) => {
@@ -27,7 +26,6 @@ class ProductListForOrder extends Component {
 
     render() {
         const {products} = this.props.product;
-        console.log(products[0]);
         return (
             <Container>
                 <ListGroup>
