@@ -1,6 +1,7 @@
 //Actions to fetch  order data from the server to redux
 import axios from 'axios';
 import {DELETE_ORDER, GET_ORDERS, ORDERS_LOADING, SET_AUTH_ERROR} from './types';
+import Cookies from "universal-cookie/cjs";
 
 const cookies = new Cookies();
 

@@ -7,6 +7,7 @@ import {getToken, signOut} from '../actions/userActions';
 
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
+import Cookies from "universal-cookie/cjs";
 
 
 class Header extends Component {

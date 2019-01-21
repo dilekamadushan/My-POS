@@ -13,6 +13,7 @@ import {
     SET_USERORDER_INFO,
     USERORDERS_LOADING
 } from './types';
+import Cookies from "universal-cookie/cjs";
 
 const cookies = new Cookies();
 

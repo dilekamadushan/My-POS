@@ -6,6 +6,7 @@ import ProductListForOrder from "./ProductListForOrder";
 import {connect} from "react-redux";
 import {getToken, signOut} from "../../actions/userActions";
 import PropTypes from 'prop-types'
+import Cookies from "universal-cookie/cjs";
 
 class OrdersComponent extends Component {
     componentDidMount() {

@@ -4,6 +4,7 @@ import {Alert, Button, Col, Container, Form, FormGroup, Input, Label,} from "rea
 
 import {connect} from "react-redux";
 import {signup} from "../actions/userActions";
+import Cookies from "universal-cookie/cjs";
 
 class SignUp extends Component {
     state = {

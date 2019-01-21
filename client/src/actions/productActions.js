@@ -10,6 +10,7 @@ import {
     SET_PRODUCT_ID,
     SET_PRODUCT_MODAL_FOR_ORDER
 } from './types';
+import Cookies from "universal-cookie/cjs";
 
 const cookies = new Cookies();
 

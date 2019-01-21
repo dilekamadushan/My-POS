@@ -7,6 +7,7 @@ import {getToken, signOut} from "../../actions/userActions";
 
 import {connect} from "react-redux";
 import PropTypes from 'prop-types'
+import Cookies from "universal-cookie/cjs";
 
 class Products extends Component {
 
