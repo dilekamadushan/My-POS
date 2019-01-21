@@ -11,10 +11,7 @@ const userRoutes = require('./api/routes/user');
 
 mongoose.connect(
   "mongodb://dileka:dileka123@ds253324.mlab.com:53324/learn_mern_shopping_list",
-/*   "mongodb://Madushan:" +
-    process.env.MONGO_ATLAS_PW +
-    "@cluster0-shard-00-00-jveuj.mongodb.net:27017,cluster0-shard-00-01-jveuj.mongodb.net:27017,cluster0-shard-00-02-jveuj.mongodb.net:27017/test?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin", */
-  {
+    {
     useMongoClient: true
   }
 );
