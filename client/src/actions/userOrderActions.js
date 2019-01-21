@@ -1,3 +1,4 @@
+//Actions to fetch  userOrder data from the server to redux
 import axios from 'axios';
 import {
     ADD_USERORDER,
@@ -9,7 +10,6 @@ import {
     GET_USERORDERS,
     SET_USERORDER_ID,
     SET_USERORDER_INFO,
-    SET_USERORDER_NAME,
     USERORDERS_LOADING
 } from './types';
 
@@ -70,13 +70,6 @@ export const setUserOrderID = (userOrderID) => {
 export const getUserOrderID = () => {
     return {
         type: GET_USERORDER_ID
-    };
-};
-
-export const setUserOrderName = (userOrderName) => {
-    return {
-        type: SET_USERORDER_NAME,
-        payload: userOrderName
     };
 };
 

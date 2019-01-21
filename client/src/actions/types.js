@@ -1,3 +1,4 @@
+//Types of actions to manage redux reducers
 export const GET_PRODUCTS = 'GET_PRODUCTS';
 export const ADD_PRODUCT = 'ADD_PRODUCT';
 export const DELETE_PRODUCT = 'DELETE_PRODUCT';

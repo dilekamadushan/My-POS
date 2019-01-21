@@ -1,3 +1,4 @@
+//Actions to fetch  product data from the server to redux
 import axios from 'axios';
 import {
     ADD_PRODUCT,
