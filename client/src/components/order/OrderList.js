@@ -48,10 +48,10 @@ class OrderList extends Component {
                                 <CardBody>
                                     <Row>
                                         <Col sm="12" md={{size: 9, offset: 1}}> <Alert color="primary">
-                                            {userOrderName}
+                                            Cart Name: {userOrderName}
                                         </Alert></Col>
                                         <Col sm="12" md={{size: 6, offset: 3}}> <Alert color="danger">
-                                            <b>  {this.calculatePrice()} $</b>
+                                            <b> Total Price: {this.calculatePrice()} $</b>
                                         </Alert></Col>
 
                                     </Row>
@@ -79,7 +79,7 @@ class OrderList extends Component {
                                     className="second-word-formatting"><h5><b>{quantity}</b></h5></span>
                                     <Row>
                                         <Col sm="12" md={{size: 6, offset: 3}}> <Alert color="danger">
-                                            <b>  {product.price * quantity} $</b>
+                                            <b> {product.price} * {quantity} = {product.price * quantity} $</b>
                                         </Alert></Col>
 
                                     </Row>
