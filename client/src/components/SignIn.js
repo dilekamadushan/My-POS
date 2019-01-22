@@ -4,6 +4,7 @@ import {Alert, Button, Col, Container, Form, FormGroup, Input, Label} from "reac
 import {getAuthError, getToken, signin} from "../actions/userActions";
 
 import {connect} from "react-redux";
+import Cookies from "universal-cookie/cjs";
 
 class SignIn extends Component {
     state = {
@@ -13,11 +14,12 @@ class SignIn extends Component {
 
     componentDidMount() {
         this.props.getAuthError();
-        const {loggedIn} = this.props.user;
-        if (loggedIn) {
+        const cookies = new Cookies();
+        let cookie = cookies.get('SyscoPOSCookie');
+        if (cookie !== undefined && cookie.toString().length > 15) {
+
             this.props.history.push('/userOrders');
         }
-
 
     }
 
@@ -60,8 +62,9 @@ class SignIn extends Component {
     };
 
     render() {
-        const {isLogged} = this.props.user;
-        if (isLogged) {
+        const cookies = new Cookies();
+        let cookie = cookies.get('SyscoPOSCookie');
+        if (cookie !== undefined && cookie.toString().length > 15) {
             this.props.history.push('/userOrders')
         }
         return (

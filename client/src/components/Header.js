@@ -7,6 +7,7 @@ import {getToken, signOut} from '../actions/userActions';
 
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
+import Cookies from "universal-cookie/cjs";
 
 
 class Header extends Component {
@@ -20,8 +21,9 @@ class Header extends Component {
     };
 
     navbarLinks() {
-        const {isLogged} = this.props.user;
-        if (isLogged) {
+        const cookies = new Cookies();
+        let cookie = cookies.get('SyscoPOSCookie');
+        if (cookie !== undefined && cookie.toString().length > 15) {
             return [
                 <ul className=" navbar-nav mr-auto">
                     <li className="nav-item">

@@ -1,6 +1,9 @@
 //Actions to fetch  order data from the server to redux
 import axios from 'axios';
-import {DELETE_ORDER, GET_ORDERS, ORDERS_LOADING} from './types';
+import {DELETE_ORDER, GET_ORDERS, ORDERS_LOADING, SET_AUTH_ERROR} from './types';
+import Cookies from "universal-cookie/cjs";
+
+const cookies = new Cookies();
 
 export const getOrders = (userOrderID) => dispatch => {
     dispatch(setOrdersLoading());
@@ -9,7 +12,13 @@ export const getOrders = (userOrderID) => dispatch => {
             dispatch({
                 type: GET_ORDERS,
                 payload: res.data.orders
-            }))
+            })).catch(error => {
+        cookies.set('SyscoPOSCookie', 'Invalid', {path: '/'});
+        dispatch({
+            type: SET_AUTH_ERROR
+        })
+
+    })
 };
 
 export const deleteOrder = (id) => dispatch => {
@@ -19,7 +28,13 @@ export const deleteOrder = (id) => dispatch => {
             payload: id
 
         })
-    )
+    ).catch(error => {
+        cookies.set('SyscoPOSCookie', 'Invalid', {path: '/'});
+        dispatch({
+            type: SET_AUTH_ERROR
+        })
+
+    })
 };
 
 export const addOrder = (order) => dispatch => {
@@ -33,7 +48,13 @@ export const addOrder = (order) => dispatch => {
                             payload: res.data.orders
                         }))
             }
-        )
+        ).catch(error => {
+        cookies.set('SyscoPOSCookie', 'Invalid', {path: '/'});
+        dispatch({
+            type: SET_AUTH_ERROR
+        })
+
+    })
 };
 
 export const setOrdersLoading = () => {

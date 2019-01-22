@@ -1,9 +1,8 @@
 # SyscoLABS-POS
 
 ##To run the code in developer mode, follow the steps
-    1.install redux developer tools in chrome
-    2.clone the code
-    3.cd Sysco-LABS-POS
-    4.npm install
-    5.cd client
-    6. npm install
+    1.clone the code
+    2.cd Sysco-LABS-POS
+    3.npm install
+    4.cd client
+    5.npm install

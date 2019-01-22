@@ -7,6 +7,7 @@ import {getToken, signOut} from "../../actions/userActions";
 
 import {connect} from "react-redux";
 import PropTypes from 'prop-types'
+import Cookies from "universal-cookie/cjs";
 
 class UserOrdersComponent extends Component {
 
@@ -16,9 +17,10 @@ class UserOrdersComponent extends Component {
 
 
     render() {
-        const {isLogged} = this.props.user;
-        if (!isLogged) {
-            this.props.history.push('/')
+        const cookies = new Cookies();
+        let cookie = cookies.get('SyscoPOSCookie');
+        if (cookie === undefined || cookie.toString().length < 15) {
+            this.props.history.push('/signin')
         }
         return (
             <div className="App">
