@@ -23,7 +23,7 @@ class Header extends Component {
     navbarLinks() {
         const cookies = new Cookies();
         let cookie = cookies.get('SyscoPOSCookie');
-        if (cookie.length > 15) {
+        if (cookie !== undefined && cookie.toString().length > 15) {
             return [
                 <ul className=" navbar-nav mr-auto">
                     <li className="nav-item">

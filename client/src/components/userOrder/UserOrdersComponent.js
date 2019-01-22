@@ -19,7 +19,7 @@ class UserOrdersComponent extends Component {
     render() {
         const cookies = new Cookies();
         let cookie = cookies.get('SyscoPOSCookie');
-        if (cookie.toString().length < 15) {
+        if (cookie === undefined || cookie.toString().length < 15) {
             this.props.history.push('/signin')
         }
         return (

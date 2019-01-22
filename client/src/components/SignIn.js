@@ -16,7 +16,7 @@ class SignIn extends Component {
         this.props.getAuthError();
         const cookies = new Cookies();
         let cookie = cookies.get('SyscoPOSCookie');
-        if (cookie.toString().length > 15) {
+        if (cookie !== undefined && cookie.toString().length > 15) {
 
             this.props.history.push('/userOrders');
         }
@@ -64,7 +64,7 @@ class SignIn extends Component {
     render() {
         const cookies = new Cookies();
         let cookie = cookies.get('SyscoPOSCookie');
-        if (cookie.toString().length > 15) {
+        if (cookie !== undefined && cookie.toString().length > 15) {
             this.props.history.push('/userOrders')
         }
         return (
