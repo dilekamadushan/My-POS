@@ -1,4 +1,4 @@
-# SyscoLABS-POS
+# My-POS
 
 ##To run the code in developer mode, follow the steps
 - [x] clone the code
