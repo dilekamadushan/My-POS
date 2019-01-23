@@ -39,7 +39,6 @@ export const userInfo = (id) => dispatch => {
             }
         )
 
-
 };
 export const getToken = () => {
     return {
@@ -56,5 +55,4 @@ export const signOut = () => {
         type: SIGNOUT
     };
 };
-
 

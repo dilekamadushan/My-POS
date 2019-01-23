@@ -68,7 +68,9 @@ exports.orders_create_order = (req, res, next) => {
                             });
 
                         }).catch(err => {
-                            res.send(500, {error: err});
+                            res.status(500).json({
+                                error: "Product not found"
+                            });
                         });
 
                     } else {
