@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import {Alert, Button, Card, CardBody, CardImg, Col, Container, ListGroup, ListGroupItem, Row} from "reactstrap";
 import {CSSTransition, TransitionGroup} from "react-transition-group";
 import {deleteOrder, getOrders} from '../../actions/orderActions';
+import {getPrice} from '../utils';
 import {getUserOrderID, getUserOrderName} from '../../actions/userOrderActions';
 import OrderTitle from "./OrderTitle";
 
@@ -33,6 +34,12 @@ class OrderList extends Component {
         return sum;
     };
 
+    calculateTotal = () => {
+        const {orders} = this.props.order;
+        return getPrice(orders);
+
+    };
+
     render() {
         const {orders} = this.props.order;
         const {userOrderName} = this.props.userOrder;
@@ -51,7 +58,7 @@ class OrderList extends Component {
                                             Cart Name: {userOrderName}
                                         </Alert></Col>
                                         <Col sm="12" md={{size: 6, offset: 3}}> <Alert color="danger">
-                                            <b> Total Price: {this.calculatePrice()} $</b>
+                                            <b> Total Price: {this.calculateTotal()} $</b>
                                         </Alert></Col>
 
                                     </Row>

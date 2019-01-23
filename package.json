@@ -25,6 +25,12 @@
     "universal-cookie": "^3.0.7"
   },
   "devDependencies": {
-    "nodemon": "^1.12.1"
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "jest": "^23.6.0",
+    "moxios": "^0.4.0",
+    "nodemon": "^1.12.1",
+    "superagent": "^4.1.0",
+    "supertest": "^3.4.2"
   }
 }
