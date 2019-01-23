@@ -10,7 +10,6 @@ exports.orders_get_all = (req, res, next) => {
         .populate("product", "name")
         .exec()
         .then(docs => {
-            console.log(docs);
             res.status(200).json({
                 count: docs.length,
                 orders: docs.map(doc => {
@@ -41,17 +40,11 @@ exports.orders_create_order = (req, res, next) => {
                     error: "Product not found"
                 });
             }
-            console.log(req.body.userOrderId + ' ' + req.body.productId);
-            //userOrderId: "5c3bc2f4fe5e56139ac248da" ,
             Order.find({userOrderId: req.body.userOrderId, product: req.body.productId})
                 .then(docs => {
-                    console.log('here', docs);
                     if (docs.length > 0) {
-                        console.log('I found a doc' + docs[0]);
                         Order.findOneAndUpdate({_id: docs[0]._id}, {$inc: {quantity: req.body.quantity}}).then(updatedOrder => {
                             Order.populate(docs[0], {path: "product"}, function (err, newOrder) {
-
-                                console.log('i am in the server' + newOrder);
                                 res.status(201).json({
                                     message: "Order stored",
                                     createdOrder: {
@@ -74,7 +67,6 @@ exports.orders_create_order = (req, res, next) => {
                         });
 
                     } else {
-                        console.log('I did not find a doc' + req.body.userOrderId + ' ' + req.body.productId);
                         const order = new Order({
                             _id: mongoose.Types.ObjectId(),
                             quantity: req.body.quantity,
@@ -84,7 +76,6 @@ exports.orders_create_order = (req, res, next) => {
                         order.save().then(result => {
                             Order.populate(result, {path: "product"}, function (err, newOrder) {
 
-                                console.log('i am in the server' + newOrder);
                                 res.status(201).json({
                                     message: "Order stored",
                                     createdOrder: {
@@ -174,7 +165,6 @@ exports.orders_getOrders_by_userOrderId = (req, res, next) => {
         .populate("product")
         .exec()
         .then(docs => {
-            // console.log(docs);
             res.status(200).json({
                 count: docs.length,
                 orders: docs.map(doc => {
