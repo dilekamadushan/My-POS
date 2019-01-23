@@ -37,8 +37,8 @@ exports.orders_create_order = (req, res, next) => {
     Product.findById(req.body.productId)
         .then(product => {
             if (!product) {
-                return res.status(404).json({
-                    message: "Product not found"
+                res.status(500).json({
+                    error: "Product not found"
                 });
             }
             console.log(req.body.userOrderId + ' ' + req.body.productId);
@@ -68,7 +68,9 @@ exports.orders_create_order = (req, res, next) => {
                             });
 
                         }).catch(err => {
-                            return res.send(500, {errorInFindAndUpdate: err});
+                            res.status(500).json({
+                                error: "Product not found"
+                            });
                         });
 
                     } else {
@@ -100,7 +102,7 @@ exports.orders_create_order = (req, res, next) => {
 
                         }).catch(err => {
                             res.status(500).json({
-                                errorIn2: err
+                                error: err
                             });
 
                         });
@@ -115,9 +117,8 @@ exports.orders_create_order = (req, res, next) => {
                 });
         })
         .catch(err => {
-            console.log(err);
             res.status(500).json({
-                errorIn4: err
+                error: err
             });
         });
 };
@@ -128,8 +129,8 @@ exports.orders_get_order = (req, res, next) => {
         .exec()
         .then(order => {
             if (!order) {
-                return res.status(404).json({
-                    message: "Order not found"
+                res.status(404).json({
+                    error: "Order not found"
                 });
             }
             res.status(200).json({

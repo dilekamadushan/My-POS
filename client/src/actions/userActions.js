@@ -31,6 +31,15 @@ export const signin = (user) => dispatch => {
 
 
 };
+
+export const userInfo = (id) => dispatch => {
+    return axios.get(`/user/${id}`)
+        .then(response => {
+                return response.data;
+            }
+        )
+
+};
 export const getToken = () => {
     return {
         type: GET_TOKEN
