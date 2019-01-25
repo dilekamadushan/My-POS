@@ -16,22 +16,12 @@ class OrderList extends Component {
 
         this.props.getUserOrderID();
         this.props.getUserOrderName();
-        const {userOrderId} = this.props.userOrder;
-        this.props.getOrders(userOrderId);
+        this.props.getOrders(this.props.userOrderId);
     }
 
     onDeleteClick = (id) => {
         this.props.deleteOrder(id)
 
-    };
-
-    calculatePrice = () => {
-        const {orders} = this.props.order;
-        let sum = 0;
-        orders.forEach(obj => {
-            sum += (obj.product.price * obj.quantity);
-        });
-        return sum;
     };
 
     calculateTotal = () => {

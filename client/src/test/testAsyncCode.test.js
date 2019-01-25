@@ -1,3 +1,4 @@
+/*
 // jest.mock('./http');
 
 const {userInfo} = require('../actions/userActions');
@@ -14,4 +15,4 @@ test('should print an uppercase text', () => {
     loadTitle().then(title => {
         expect(title).toBe('DELECTUS AUT AUTEM');
     });
-});
+});*/

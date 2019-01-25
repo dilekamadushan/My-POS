@@ -27,7 +27,7 @@ class OrdersComponent extends Component {
                             Manage Your Cart Here!
                         </Alert>
                     </div>
-                    <OrderList/>
+                    <OrderList userOrderId={this.props.match.params.userOrderId}/>
                     <div>
                         <Container>
                             <div className="m-4">
