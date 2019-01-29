@@ -33,85 +33,98 @@ exports.orders_get_all = (req, res, next) => {
 };
 
 exports.orders_create_order = (req, res, next) => {
-    Product.findById(req.body.productId)
-        .then(product => {
-            if (!product) {
-                res.status(500).json({
-                    error: "Product not found"
-                });
-            }
-            Order.find({userOrderId: req.body.userOrderId, product: req.body.productId})
-                .then(docs => {
-                    if (docs.length > 0) {
-                        Order.findOneAndUpdate({_id: docs[0]._id}, {$inc: {quantity: req.body.quantity}}).then(updatedOrder => {
-                            Order.populate(docs[0], {path: "product"}, function (err, newOrder) {
-                                res.status(201).json({
-                                    message: "Order stored",
-                                    createdOrder: {
-                                        _id: updatedOrder._id,
-                                        userOrderId: updatedOrder.userOrderId,
-                                        product: updatedOrder.product,
-                                        quantity: updatedOrder.quantity
-                                    },
-                                    request: {
-                                        type: "GET",
-                                        url: "http://localhost:3000/orders/" + updatedOrder._id
-                                    }
-                                });
-                            });
-
-                        }).catch(err => {
-                            res.status(500).json({
-                                error: "Product not found"
-                            });
-                        });
-
-                    } else {
-                        const order = new Order({
-                            _id: mongoose.Types.ObjectId(),
-                            quantity: req.body.quantity,
-                            product: req.body.productId,
-                            userOrderId: req.body.userOrderId
-                        });
-                        order.save().then(result => {
-                            Order.populate(result, {path: "product"}, function (err, newOrder) {
-
-                                res.status(201).json({
-                                    message: "Order stored",
-                                    createdOrder: {
-                                        _id: newOrder._id,
-                                        product: newOrder.product,
-                                        userOrderId: newOrder.userOrderId,
-                                        quantity: newOrder.quantity
-                                    },
-                                    request: {
-                                        type: "GET",
-                                        url: "http://localhost:3000/orders/" + newOrder._id
-                                    }
-                                });
-                            });
-
-                        }).catch(err => {
-                            res.status(500).json({
-                                error: err
-                            });
-
-                        });
-                    }
-
-
-                })
-                .catch(err => {
+    if (req.body.quantity < 100) {
+        Product.findById(req.body.productId)
+            .then(product => {
+                if (!product) {
                     res.status(500).json({
-                        errorIn3: err
+                        error: "Product not found"
                     });
+                }
+                Order.find({userOrderId: req.body.userOrderId, product: req.body.productId})
+                    .then(docs => {
+                        if (docs.length > 0) {
+                            if (docs[0].quantity + req.body.quantity <= 100) {
+                                Order.findOneAndUpdate({_id: docs[0]._id}, {$inc: {quantity: req.body.quantity}}).then(updatedOrder => {
+                                    Order.populate(docs[0], {path: "product"}, function (err, newOrder) {
+                                        res.status(201).json({
+                                            message: "Order stored",
+                                            createdOrder: {
+                                                _id: updatedOrder._id,
+                                                userOrderId: updatedOrder.userOrderId,
+                                                product: updatedOrder.product,
+                                                quantity: updatedOrder.quantity
+                                            },
+                                            request: {
+                                                type: "GET",
+                                                url: "http://localhost:3000/orders/" + updatedOrder._id
+                                            }
+                                        });
+                                    });
+
+                                }).catch(err => {
+                                    res.status(500).json({
+                                        error: "Product not found"
+                                    });
+                                });
+                            } else {
+                                res.status(500).json({
+                                    error: 'Invalid Quantity, the total quantity should be below 100'
+                                });
+                            }
+
+                        } else {
+                            const order = new Order({
+                                _id: mongoose.Types.ObjectId(),
+                                quantity: req.body.quantity,
+                                product: req.body.productId,
+                                userOrderId: req.body.userOrderId
+                            });
+                            order.save().then(result => {
+                                Order.populate(result, {path: "product"}, function (err, newOrder) {
+
+                                    res.status(201).json({
+                                        message: "Order stored",
+                                        createdOrder: {
+                                            _id: newOrder._id,
+                                            product: newOrder.product,
+                                            userOrderId: newOrder.userOrderId,
+                                            quantity: newOrder.quantity
+                                        },
+                                        request: {
+                                            type: "GET",
+                                            url: "http://localhost:3000/orders/" + newOrder._id
+                                        }
+                                    });
+                                });
+
+                            }).catch(err => {
+                                res.status(500).json({
+                                    error: err
+                                });
+
+                            });
+                        }
+
+
+                    })
+                    .catch(err => {
+                        res.status(500).json({
+                            errorIn3: err
+                        });
+                    });
+            })
+            .catch(err => {
+                res.status(500).json({
+                    error: err
                 });
-        })
-        .catch(err => {
-            res.status(500).json({
-                error: err
             });
+    } else {
+        res.status(500).json({
+            error: 'Invalid Quantity, Please pick below 100'
         });
+    }
+
 };
 
 exports.orders_get_order = (req, res, next) => {

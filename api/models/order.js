@@ -8,7 +8,7 @@ const orderSchema = mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId, ref: 'Product', required: true
     },
     quantity: {
-        type: Number, default: 1
+        type: Number, default: 1, max: [100, 'Invalid Quantity, Quantity should be below 100']
     },
     userOrderId: {
         type: String, required: true

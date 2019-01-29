@@ -1,6 +1,6 @@
 //Actions to fetch  order data from the server to redux
 import axios from 'axios';
-import {DELETE_ORDER, GET_ORDERS, ORDERS_LOADING, SET_AUTH_ERROR} from './types';
+import {DELETE_ORDER, GET_ORDERS, ORDERS_LOADING, SET_AUTH_ERROR, ORDER_QUANTITY_ERROR} from './types';
 import Cookies from "universal-cookie/cjs";
 
 const cookies = new Cookies();
@@ -49,10 +49,16 @@ export const addOrder = (order) => dispatch => {
                         }))
             }
         ).catch(error => {
-        cookies.set('SyscoPOSCookie', 'Invalid', {path: '/'});
-        dispatch({
-            type: SET_AUTH_ERROR
-        })
+        if (error.response.data.error.includes('Invalid Quantity')) {
+            dispatch({
+                type: ORDER_QUANTITY_ERROR
+            })
+        } else {
+            cookies.set('SyscoPOSCookie', 'Invalid', {path: '/'});
+            dispatch({
+                type: SET_AUTH_ERROR
+            })
+        }
 
     })
 };

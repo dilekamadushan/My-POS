@@ -22,7 +22,8 @@ export default function (state = initialState, action) {
             return {
                 ...state,
                 token: action.payload,
-                isLogged: true
+                isLogged: true,
+                auth_error: false
             };
 
         case GET_TOKEN:
@@ -46,6 +47,8 @@ export default function (state = initialState, action) {
             return {
                 ...state,
                 isLogged: false,
+                auth_error: false,
+                token: ''
             };
         default:
             return state;

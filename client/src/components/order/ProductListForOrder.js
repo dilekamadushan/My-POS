@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import {Alert, Button, Card, CardBody, CardImg, CardText, Col, Container, ListGroup, Row} from "reactstrap";
+import {Alert, Button, Card, CardBody, CardImg, Col, Container, ListGroup, Row} from "reactstrap";
 import {CSSTransition, TransitionGroup} from "react-transition-group";
 import ProductModalForOrder from "./ProductModalForOrder"
 import {getProducts, setProductId} from '../../actions/productActions';
@@ -33,40 +33,45 @@ class ProductListForOrder extends Component {
                         {products.map(({_id, name, price, imageURL}) => (
                             <CSSTransition key={_id} timeout={500} classNames="fade">
                                 {
+                                    <Row>
+                                        <Col sm="12" md={{size: 6, offset: 3}}>
+                                            <div className="m-2">
 
-                                    <div className="m-lg-5">
-                                        <Card className="md">
-                                            <CardImg top width="40%" height="400" className="md"
-                                                     src={imageURL}
-                                                     alt="Card image cap"/>
-                                            <CardBody className="md">
+                                                {/* <div className="m-lg-5">*/}
+                                                <Card>
+                                                    <CardImg top width="100"
+                                                             src={imageURL}
+                                                             alt="Card image cap"/>
+                                                    <CardBody>
 
 
-                                                <Row>
-                                                    <Col sm="12" md={{size: 6, offset: 3}}> <Alert color="primary">
-                                                        {name}
-                                                    </Alert></Col>
-                                                    <Col sm="12" md={{size: 6, offset: 3}}> <Alert color="warning">
-                                                        {price} $
-                                                    </Alert></Col>
+                                                        <Row>
+                                                            <Col sm="12" md={{size: 6, offset: 3}}> <Alert
+                                                                color="primary">
+                                                                {name}
+                                                            </Alert></Col>
+                                                            <Col sm="12" md={{size: 6, offset: 3}}> <Alert
+                                                                color="warning">
+                                                                {price} $
+                                                            </Alert></Col>
 
-                                                </Row>
+                                                        </Row>
 
-                                                <CardText>
-                                                </CardText>
-                                                <Button
-                                                    className="badge-primary"
-                                                    color="dark"
-                                                    style={{marginBottom: "2rem"}}
-                                                    onClick={this.onClickSetProductIdAndTriggerModal.bind(this, _id)}
-                                                >
-                                                    Add to Cart
-                                                </Button>
-                                                <ProductModalForOrder/>
-                                            </CardBody>
-                                        </Card>
-                                    </div>
+                                                        <Button
+                                                            className="badge-primary"
+                                                            color="dark"
+                                                            style={{marginBottom: "2rem"}}
+                                                            onClick={this.onClickSetProductIdAndTriggerModal.bind(this, _id)}
+                                                        >
+                                                            Add to Cart
+                                                        </Button>
+                                                        <ProductModalForOrder userOrderId={this.props.userOrderId}/>
+                                                    </CardBody>
+                                                </Card>
+                                            </div>
+                                        </Col>
 
+                                    </Row>
                                 }
 
 

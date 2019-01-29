@@ -24,7 +24,7 @@ beforeAll((done) => {
             const order = new Order({
                 _id: new mongoose.Types.ObjectId(),
                 name: 'order for testing',
-                productId: '5c418898a26a6d584fd9af27',
+                product: '5c418898a26a6d584fd9af27',
                 userOrderId: '5c3bc2f4fe5e56139ac248da',
                 quantity: 0
             });

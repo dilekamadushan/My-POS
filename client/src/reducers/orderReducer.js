@@ -1,11 +1,12 @@
 //reducer file to manage  redux order data
-import {ADD_ORDER, DELETE_ORDER, GET_ORDERS, ORDERS_LOADING} from '../actions/types';
+import {ADD_ORDER, DELETE_ORDER, GET_ORDERS, ORDER_QUANTITY_ERROR, ORDERS_LOADING} from '../actions/types';
 
 
 const initialState = {
     orders: [],
     loading: false,
-    userOrderId: ''
+    userOrderId: '',
+    orderQuantityError: false
 };
 
 export default function (state = initialState, action) {
@@ -14,7 +15,8 @@ export default function (state = initialState, action) {
             return {
                 ...state,
                 orders: action.payload,
-                loading: false
+                loading: false,
+                orderQuantityError: false
             };
         case DELETE_ORDER:
             return {
@@ -24,7 +26,12 @@ export default function (state = initialState, action) {
         case ADD_ORDER:
             return {
                 ...state,
-                orders: [action.payload, ...state.orders]
+                orders: [action.payload, ...state.orders],
+            };
+        case ORDER_QUANTITY_ERROR:
+            return {
+                ...state,
+                orderQuantityError: true
             };
 
         case ORDERS_LOADING:

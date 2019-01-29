@@ -13,6 +13,18 @@ class OrdersComponent extends Component {
         this.props.getToken();
     }
 
+    errorMessage() {
+        const {orderQuantityError} = this.props.order;
+        if (orderQuantityError) {
+            return (
+                <Alert color="danger">
+                    Invalid quantity!!!
+                </Alert>
+            );
+
+        }
+    }
+
     render() {
         const cookies = new Cookies();
         let cookie = cookies.get('SyscoPOSCookie');
@@ -34,8 +46,9 @@ class OrdersComponent extends Component {
                                 <Alert color="primary">
                                     Add more products!
                                 </Alert>
+                                {this.errorMessage()}
                             </div>
-                            <ProductListForOrder/>
+                            <ProductListForOrder userOrderId={this.props.match.params.userOrderId}/>
                         </Container>
                     </div>
 
@@ -49,10 +62,12 @@ class OrdersComponent extends Component {
 OrdersComponent.propTypes = {
     getToken: PropTypes.func.isRequired,
     user: PropTypes.object.isRequired,
+    order: PropTypes.object.isRequired,
     signOut: PropTypes.func.isRequired
 };
 const mapStateToProps = (state) => ({
-    user: state.user
+    user: state.user,
+    order: state.order
 });
 export default connect(mapStateToProps, {getToken, signOut})(OrdersComponent);
 

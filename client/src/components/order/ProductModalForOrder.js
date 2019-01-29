@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import {Button, Form, FormGroup, Input, Label, Modal, ModalBody, ModalHeader} from "reactstrap";
+import {Alert, Button, Form, FormGroup, Input, Label, Modal, ModalBody, ModalHeader} from "reactstrap";
 import {getProductId, setProductModalForOrder} from "../../actions/productActions";
 import {addOrder} from '../../actions/orderActions';
 import {getUserOrderID} from "../../actions/userOrderActions";
@@ -32,12 +32,11 @@ class ProductModalForOrder extends Component {
     onSubmit = e => {
         e.preventDefault();
 
-        const {userOrderId} = this.props.userOrder;
         const {productId} = this.props.product;
 
         const newOrder = {
             productId: productId,
-            userOrderId: userOrderId,
+            userOrderId: this.props.userOrderId,
             quantity: this.state.quantity
         };
         this.props.addOrder(newOrder);
@@ -56,8 +55,10 @@ class ProductModalForOrder extends Component {
                     <ModalBody>
                         <Form onSubmit={this.onSubmit}>
                             <FormGroup>
+                                <Alert color="danger">
+                                    Maximum quantity is 100!!!
+                                </Alert>
                                 <Label for="quantity">Quantity</Label>
-
                                 <Input
                                     type="number"
                                     name="quantity"

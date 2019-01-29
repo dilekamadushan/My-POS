@@ -47,7 +47,7 @@ class OrderList extends Component {
                                         <Col sm="12" md={{size: 9, offset: 1}}> <Alert color="primary">
                                             Cart Name: {userOrderName}
                                         </Alert></Col>
-                                        <Col sm="12" md={{size: 6, offset: 3}}> <Alert color="danger">
+                                        <Col sm="12" md={{size: 6, offset: 3}}> <Alert color="warning">
                                             <b> Total Price: {this.calculateTotal()} $</b>
                                         </Alert></Col>
 
@@ -73,9 +73,9 @@ class OrderList extends Component {
                                         &times;
                                     </Button>
                                     <h3> {product.name} </h3><span
-                                    className="second-word-formatting"><h5><b>{quantity}</b></h5></span>
+                                    className="second-word-formatting"><h2><b>{quantity}</b></h2></span>
                                     <Row>
-                                        <Col sm="12" md={{size: 6, offset: 3}}> <Alert color="danger">
+                                        <Col sm="12" md={{size: 6, offset: 3}}> <Alert color="warning">
                                             <b> {product.price} * {quantity} = {product.price * quantity} $</b>
                                         </Alert></Col>
 
