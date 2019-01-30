@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
-import {Col, Container, Image, Row} from 'reactstrap';
+import {Col, Container, Row} from 'reactstrap';
 import Products from './components/product/ProductsComponent';
 import UserOrdersComponent from './components/userOrder/UserOrdersComponent';
 import OrdersComponent from './components/order/OrdersComponent';

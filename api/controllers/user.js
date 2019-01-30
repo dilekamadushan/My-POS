@@ -5,11 +5,11 @@ const jwt = require("jsonwebtoken");
 
 const User = require("../models/user");
 
-exports.user_signup = (req, res, next) => {
+exports.user_signup = (req, res, next) => { // add a new user into the system
     User.find({email: req.body.email})
         .exec()
         .then(user => {
-            if (user.length >= 1) {
+            if (user.length >= 1) { //check for existing mails
                 return res.status(409).json({
                     message: "Mail exists"
                 });
@@ -43,7 +43,7 @@ exports.user_signup = (req, res, next) => {
         });
 };
 
-exports.user_login = (req, res, next) => {
+exports.user_login = (req, res, next) => { //log a user into the system
     User.find({email: req.body.email})
         .exec()
         .then(user => {
@@ -52,7 +52,7 @@ exports.user_login = (req, res, next) => {
                     message: "Auth failed"
                 });
             }
-            bcrypt.compare(req.body.password, user[0].password, (err, result) => {
+            bcrypt.compare(req.body.password, user[0].password, (err, result) => { //check for user password
                 if (err) {
                     return res.status(401).json({
                         message: "Auth failed"
@@ -66,10 +66,10 @@ exports.user_login = (req, res, next) => {
                         },
                         "SECRET",
                         {
-                            expiresIn: "1h"
+                            expiresIn: "1h" //set the expiry time for token
                         }
                     );
-                    return res.status(200).json({
+                    return res.status(200).json({  //send the token back to the user
                         message: "Auth successful",
                         token: token
                     });
@@ -86,7 +86,7 @@ exports.user_login = (req, res, next) => {
         });
 };
 
-exports.user_delete = (req, res, next) => {
+exports.user_delete = (req, res, next) => { // delete a user in the system
     User.remove({_id: req.params.userId})
         .exec()
         .then(result => {
@@ -101,7 +101,7 @@ exports.user_delete = (req, res, next) => {
         });
 };
 
-exports.user_get_userInfo = (req, res, next) => {
+exports.user_get_userInfo = (req, res, next) => { //get a user's details
     User.findById(req.params.userId)
         .exec()
         .then(user => {

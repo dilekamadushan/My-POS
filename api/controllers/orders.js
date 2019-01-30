@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 const Order = require("../models/order");
 const Product = require("../models/product");
 
-exports.orders_get_all = (req, res, next) => {
+exports.orders_get_all = (req, res, next) => { //get all orders in the database
     Order.find()
         .select("product quantity _id")
         .populate("product", "name")
@@ -32,8 +32,8 @@ exports.orders_get_all = (req, res, next) => {
         });
 };
 
-exports.orders_create_order = (req, res, next) => {
-    if (req.body.quantity < 100) {
+exports.orders_create_order = (req, res, next) => { //adds an order relevant to a userOrder
+    if (req.body.quantity < 100) { //checks whether the order quantity is valid
         Product.findById(req.body.productId)
             .then(product => {
                 if (!product) {
@@ -43,8 +43,8 @@ exports.orders_create_order = (req, res, next) => {
                 }
                 Order.find({userOrderId: req.body.userOrderId, product: req.body.productId})
                     .then(docs => {
-                        if (docs.length > 0) {
-                            if (docs[0].quantity + req.body.quantity <= 100) {
+                        if (docs.length > 0) { //checks whether the order is already is placed
+                            if (docs[0].quantity + req.body.quantity <= 100) { //checks whether the total quantity is below 100
                                 Order.findOneAndUpdate({_id: docs[0]._id}, {$inc: {quantity: req.body.quantity}}).then(updatedOrder => {
                                     Order.populate(docs[0], {path: "product"}, function (err, newOrder) {
                                         res.status(201).json({
@@ -74,13 +74,13 @@ exports.orders_create_order = (req, res, next) => {
                             }
 
                         } else {
-                            const order = new Order({
+                            const order = new Order({ //create a new order with the quantity
                                 _id: mongoose.Types.ObjectId(),
                                 quantity: req.body.quantity,
                                 product: req.body.productId,
                                 userOrderId: req.body.userOrderId
                             });
-                            order.save().then(result => {
+                            order.save().then(result => { //save the new order
                                 Order.populate(result, {path: "product"}, function (err, newOrder) {
 
                                     res.status(201).json({
@@ -127,7 +127,7 @@ exports.orders_create_order = (req, res, next) => {
 
 };
 
-exports.orders_get_order = (req, res, next) => {
+exports.orders_get_order = (req, res, next) => { //return an order relevant to a id
     Order.findById(req.params.orderId)
         .populate("product")
         .exec()
@@ -152,7 +152,7 @@ exports.orders_get_order = (req, res, next) => {
         });
 };
 
-exports.orders_delete_order = (req, res, next) => {
+exports.orders_delete_order = (req, res, next) => { //delete an order given an order id
     Order.remove({_id: req.params.orderId})
         .exec()
         .then(result => {
@@ -172,7 +172,7 @@ exports.orders_delete_order = (req, res, next) => {
         });
 };
 
-exports.orders_getOrders_by_userOrderId = (req, res, next) => {
+exports.orders_getOrders_by_userOrderId = (req, res, next) => { //get orders relevant to a particular userOrderId
     Order.find({userOrderId: req.params.userOrderId})
         .select("product quantity _id")
         .populate("product")
