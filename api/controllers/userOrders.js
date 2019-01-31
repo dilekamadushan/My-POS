@@ -75,31 +75,37 @@ exports.userOrders_delete_userOrder = (req, res, next) => { //delete a userOrder
 };
 
 exports.userOrders_create_userOrder = (req, res, next) => { //add a userOrder into the database
-    const userOrder = new UserOrder({
-        _id: new mongoose.Types.ObjectId(),
-        name: req.body.name
-    });
-    userOrder
-        .save()
-        .then(result => {
-            console.log(result);
-            res.status(201).json({
-                message: "Created userOrder successfully",
-                createdUserOrder: {
-                    name: result.name,
-                    _id: result._id,
-                    createdDate: result.date,
-                    request: {
-                        type: "GET",
-                        url: "http://localhost:3000/userOrders/" + result._id
-                    }
-                }
-            });
-        })
-        .catch(err => {
-            console.log(err);
-            res.status(500).json({
-                error: err
-            });
+
+    if (req.body.name !== undefined) {
+        const userOrder = new UserOrder({
+            _id: new mongoose.Types.ObjectId(),
+            name: req.body.name
         });
+        userOrder
+            .save()
+            .then(result => {
+                res.status(201).json({
+                    message: "Created userOrder successfully",
+                    createdUserOrder: {
+                        name: result.name,
+                        _id: result._id,
+                        createdDate: result.date,
+                        request: {
+                            type: "GET",
+                            url: "http://localhost:3000/userOrders/" + result._id
+                        }
+                    }
+                });
+            })
+            .catch(err => {
+                res.status(500).json({
+                    error: err
+                });
+            });
+    } else {
+        res.status(500).json({
+            error: 'Required attributes are missing'
+        });
+    }
+
 };

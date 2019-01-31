@@ -31,3 +31,4 @@ export const SIGNOUT = 'SIGNOUT';
 export const GET_TOKEN = 'GET_TOKEN';
 export const SET_AUTH_ERROR = 'SET_AUTH_ERROR';
 export const GET_AUTH_ERROR = 'GET_AUTH_ERROR';
+export const SET_SIGN_UP_ERROR = 'SET_SIGN_UP_ERROR';

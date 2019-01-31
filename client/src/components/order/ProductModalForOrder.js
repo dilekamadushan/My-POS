@@ -49,7 +49,6 @@ class ProductModalForOrder extends Component {
 
         return (
             <div>
-
                 <Modal isOpen={this.returnBooleanForModal()} toggle={this.toggle}>
                     <ModalHeader toggle={this.toggle}>Add To Cart</ModalHeader>
                     <ModalBody>
@@ -64,6 +63,8 @@ class ProductModalForOrder extends Component {
                                     name="quantity"
                                     id="quantity"
                                     placeholder="Add Quantity"
+                                    value={this.state.quantity}
+                                    required={true}
                                     onChange={this.onChange}
                                 />
 

@@ -33,36 +33,42 @@ exports.products_get_all = (req, res, next) => { //get all products
 };
 
 exports.products_create_product = (req, res, next) => { //add a new product into the database
-    const product = new Product({
-        _id: new mongoose.Types.ObjectId(),
-        name: req.body.name,
-        price: req.body.price,
-        imageURL: req.body.imageURL
-    });
-    product
-        .save()
-        .then(result => {
-            console.log(result);
-            res.status(201).json({
-                message: "Created product successfully",
-                createdProduct: {
-                    name: result.name,
-                    price: result.price,
-                    _id: result._id,
-                    imageURL: result.imageURL,
-                    request: {
-                        type: "GET",
-                        url: "http://localhost:3000/products/" + result._id
-                    }
-                }
-            });
-        })
-        .catch(err => {
-            console.log(err);
-            res.status(500).json({
-                error: err
-            });
+    if (req.body.name !== undefined && req.body.price !== undefined && req.body.imageURL !== undefined) { //check whether the required params are present in the body
+        const product = new Product({
+            _id: new mongoose.Types.ObjectId(),
+            name: req.body.name,
+            price: req.body.price,
+            imageURL: req.body.imageURL
         });
+        product
+            .save()
+            .then(result => {
+                console.log(result);
+                res.status(201).json({
+                    message: "Created product successfully",
+                    createdProduct: {
+                        name: result.name,
+                        price: result.price,
+                        _id: result._id,
+                        imageURL: result.imageURL,
+                        request: {
+                            type: "GET",
+                            url: "http://localhost:3000/products/" + result._id
+                        }
+                    }
+                });
+            })
+            .catch(err => {
+                console.log(err);
+                res.status(500).json({
+                    error: err
+                });
+            });
+    } else {
+        res.status(500).json({
+            error: 'Required attributes are missing'
+        });
+    }
 };
 
 exports.products_get_product = (req, res, next) => { //get product detail

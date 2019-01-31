@@ -33,18 +33,18 @@ exports.orders_get_all = (req, res, next) => { //get all orders in the database
 };
 
 exports.orders_create_order = (req, res, next) => { //adds an order relevant to a userOrder
-    if (req.body.quantity < 100) { //checks whether the order quantity is valid
+    if (req.body.quantity !== undefined && req.body.quantity < 101 && req.body.productId !== undefined && req.body.userOrderId !== undefined) { //checks whether the order quantity and required parameters are valid
         Product.findById(req.body.productId)
             .then(product => {
                 if (!product) {
                     res.status(500).json({
-                        error: "Product not found"
+                        error: "Product not found, Order can't be placed"
                     });
                 }
                 Order.find({userOrderId: req.body.userOrderId, product: req.body.productId})
                     .then(docs => {
                         if (docs.length > 0) { //checks whether the order is already is placed
-                            if (docs[0].quantity + req.body.quantity <= 100) { //checks whether the total quantity is below 100
+                            if (docs[0].quantity + req.body.quantity <= 101) { //checks whether the total quantity is below 100
                                 Order.findOneAndUpdate({_id: docs[0]._id}, {$inc: {quantity: req.body.quantity}}).then(updatedOrder => {
                                     Order.populate(docs[0], {path: "product"}, function (err, newOrder) {
                                         res.status(201).json({
@@ -120,9 +120,17 @@ exports.orders_create_order = (req, res, next) => { //adds an order relevant to 
                 });
             });
     } else {
-        res.status(500).json({
-            error: 'Invalid Quantity, Please pick below 100'
-        });
+        if (req.body.quantity > 100) {
+            res.status(500).json({
+                error: 'Invalid Quantity, Please pick below 100'
+            });
+        } else {
+            res.status(500).json({
+                error: 'Required attributes are missing'
+            });
+        }
+
+
     }
 
 };

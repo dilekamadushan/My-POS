@@ -83,6 +83,7 @@ class SignIn extends Component {
                                     id="exampleEmail"
                                     placeholder="myemail@email.com"
                                     onChange={this.onChange}
+                                    required={true}
 
                                 /></Col>
                             </FormGroup>
@@ -96,6 +97,7 @@ class SignIn extends Component {
                                     id="examplePassword"
                                     placeholder="********"
                                     onChange={this.onChange}
+                                    required={true}
                                 />
                                 </Col>
                             </FormGroup>

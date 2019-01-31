@@ -1,6 +1,6 @@
 //Actions to fetch  user data from the server to redux
 import axios from 'axios';
-import {GET_AUTH_ERROR, GET_TOKEN, SET_AUTH_ERROR, SIGNIN, SIGNOUT, SIGNUP} from './types';
+import {GET_AUTH_ERROR, GET_TOKEN, SET_AUTH_ERROR, SET_SIGN_UP_ERROR, SIGNIN, SIGNOUT, SIGNUP} from './types';
 import Cookies from "universal-cookie/cjs";
 
 export const signup = (user) => dispatch => {
@@ -9,7 +9,12 @@ export const signup = (user) => dispatch => {
             dispatch({
                 type: SIGNUP,
             })
-        )
+        ).catch(error => {
+        dispatch({
+            type: SET_SIGN_UP_ERROR
+        })
+
+    })
 };
 
 export const signin = (user) => dispatch => {

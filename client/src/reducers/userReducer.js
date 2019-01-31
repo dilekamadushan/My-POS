@@ -1,12 +1,22 @@
 //reducer file to manage  user data
-import {AUTH_ERROR, GET_AUTH_ERROR, GET_TOKEN, SET_AUTH_ERROR, SIGNIN, SIGNOUT, SIGNUP} from '../actions/types';
+import {
+    AUTH_ERROR,
+    GET_AUTH_ERROR,
+    GET_TOKEN,
+    SET_AUTH_ERROR,
+    SET_SIGN_UP_ERROR,
+    SIGNIN,
+    SIGNOUT,
+    SIGNUP
+} from '../actions/types';
 import Cookies from "universal-cookie/cjs";
 
 export const initialState = {
     user: '',
     isLogged: false,
     token: '',
-    authError: false
+    authError: false,
+    signUpError: false
 };
 
 export default function (state = initialState, action) {
@@ -23,7 +33,8 @@ export default function (state = initialState, action) {
                 ...state,
                 token: action.payload,
                 isLogged: true,
-                auth_error: false
+                auth_error: false,
+                signUpError: false
             };
 
         case GET_TOKEN:
@@ -36,6 +47,14 @@ export default function (state = initialState, action) {
                 ...state,
                 auth_error: true,
                 isLogged: false,
+                signUpError: false
+            };
+        case SET_SIGN_UP_ERROR:
+            return {
+                ...state,
+                auth_error: false,
+                isLogged: false,
+                signUpError: true
             };
         case GET_AUTH_ERROR:
             return {

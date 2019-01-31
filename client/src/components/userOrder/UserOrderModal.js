@@ -57,6 +57,7 @@ class UserOrderModal extends Component {
                                     id="userOrder"
                                     placeholder="Add Cart"
                                     onChange={this.onChange}
+                                    required={true}
                                 />
 
                                 <Button color="dark" style={{marginTop: "2rem"}} block>

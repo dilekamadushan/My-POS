@@ -59,6 +59,7 @@ class ProductModal extends Component {
                                     id="product"
                                     placeholder="Add shopping Product"
                                     onChange={this.onChange}
+                                    required={true}
                                 />
 
                                 <Label for="price">Price</Label>
@@ -69,6 +70,7 @@ class ProductModal extends Component {
                                     id="price"
                                     placeholder="Add Price"
                                     onChange={this.onChange}
+                                    required={true}
                                 />
 
                                 <Label for="image">Image</Label>
@@ -79,6 +81,7 @@ class ProductModal extends Component {
                                     id="imageURL"
                                     placeholder="Add image URL"
                                     onChange={this.onChange}
+                                    required={true}
                                 />
 
                                 <Button color="dark" style={{marginTop: "2rem"}} block>

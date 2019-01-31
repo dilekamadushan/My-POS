@@ -24,15 +24,34 @@ class SignUp extends Component {
         };
         //Add User
         this.props.signup(newUser);
-        this.props.history.push('/signin');
 
     };
+
+    errorMessage() {
+        const {signUpError} = this.props.user;
+        if (signUpError) {
+            return (
+                <Alert color="danger">
+                    Please try again with a different mail address!!!
+                </Alert>
+            );
+
+        } else {
+            return (
+
+                <Alert color="success">
+                    Please Sign Up if you don't have an account already
+                </Alert>
+
+            )
+        }
+    }
 
     render() {
         return (
             <Container className="App">
                 <h2><b>Sign Up</b></h2>
-                <Form className="form" onSubmit={this.onSubmit}>
+                <Form className="form m-2" onSubmit={this.onSubmit}>
                     <Col>
                         <FormGroup>
                             <Label>Email</Label>
@@ -43,6 +62,7 @@ class SignUp extends Component {
                                 id="exampleEmail"
                                 placeholder="myemail@email.com"
                                 onChange={this.onChange}
+                                required={true}
 
                             /></Col>
                         </FormGroup>
@@ -56,15 +76,14 @@ class SignUp extends Component {
                                 id="examplePassword"
                                 placeholder="********"
                                 onChange={this.onChange}
+                                required={true}
                             />
                             </Col>
                         </FormGroup>
                     </Col>
                     <Button>Submit</Button>
                 </Form>
-                <Alert color="success">
-                    Please Sign Up if you don't have an account already
-                </Alert>
+                {this.errorMessage()}
             </Container>
         );
     }
