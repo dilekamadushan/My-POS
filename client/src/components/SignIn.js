@@ -75,7 +75,7 @@ class SignIn extends Component {
                     <Form className="form" onSubmit={this.onSubmit}>
                         <Col>
                             <FormGroup>
-                                <Label>Email</Label>
+                                <Label>Emails</Label>
 
                                 <Col sm="12" md={{size: 6, offset: 3}}> <Input
                                     type="email"
@@ -90,7 +90,7 @@ class SignIn extends Component {
                         </Col>
                         <Col>
                             <FormGroup>
-                                <Label for="examplePassword">Password</Label>
+                                <Label for="examplePassword">Passwords</Label>
                                 <Col sm="12" md={{size: 6, offset: 3}}> <Input
                                     type="password"
                                     name="password"
